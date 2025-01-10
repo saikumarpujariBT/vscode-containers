@@ -51,7 +51,7 @@ export class NetSdkDebugHelper extends NetCoreDebugHelper {
                 },
             });
         } else {
-            await commands.executeCommand('vscode-docker.configure');
+            await commands.executeCommand('vscode-containers.configure');
         }
 
         return configurations;

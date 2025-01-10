@@ -7,8 +7,8 @@ import { IActionContext } from '@microsoft/vscode-azext-utils';
 import * as vscode from 'vscode';
 import { ext } from '../../extensionVariables';
 
-export const danglingImagesMementoKey = 'vscode-docker.images.showDanglingImages';
-const danglingImagesContextKey = 'vscode-docker:danglingShown';
+export const danglingImagesMementoKey = 'vscode-containers.images.showDanglingImages';
+const danglingImagesContextKey = 'vscode-containers:danglingShown';
 
 export async function showDanglingImages(context: IActionContext): Promise<void> {
     await ext.context.globalState.update(danglingImagesMementoKey, true);

@@ -38,7 +38,7 @@ export async function registryExperience<TNode extends CommonRegistryItem>(conte
             ...[add])
             .then((result) => {
                 if (result === add) {
-                    void commands.executeCommand('vscode-docker.registries.connectRegistry');
+                    void commands.executeCommand('vscode-containers.registries.connectRegistry');
                 }
             });
 

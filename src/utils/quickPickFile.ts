@@ -101,7 +101,7 @@ export async function quickPickDockerFileItem(context: IActionContext, dockerFil
         if (!selectedDockerFile) {
             const msg = vscode.l10n.t('Couldn\'t find a Dockerfile in your workspace. Would you like to add Docker files to the workspace?');
             await context.ui.showWarningMessage(msg, { stepName: msg }, DialogResponses.yes, DialogResponses.cancel);
-            await vscode.commands.executeCommand('vscode-docker.configure');
+            await vscode.commands.executeCommand('vscode-containers.configure');
             // Try again
         }
     }
@@ -126,7 +126,7 @@ export async function quickPickDockerComposeFileItem(context: IActionContext, ro
         } else {
             const msg = vscode.l10n.t('Couldn\'t find any docker-compose files in your workspace. Would you like to add Docker files to the workspace?');
             await context.ui.showWarningMessage(msg, { stepName: msg }, DialogResponses.yes, DialogResponses.cancel);
-            await vscode.commands.executeCommand('vscode-docker.configureCompose');
+            await vscode.commands.executeCommand('vscode-containers.configureCompose');
             // Try again
         }
     }

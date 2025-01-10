@@ -3,17 +3,17 @@
  *  Licensed under the MIT License. See License.md in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as vscode from 'vscode';
 import { IActionContext, callWithTelemetryAndErrorHandling } from '@microsoft/vscode-azext-utils';
+import * as vscode from 'vscode';
 import { ext } from '../../extensionVariables';
 
 // Currently-active surveys should be registered here
 const currentSurveys: Survey[] = [
 ];
 
-const surveyRespondedKeyPrefix = 'vscode-docker.surveys.response';
-const surveyFlightPrefix = 'vscode-docker.surveys';
-const lastToastedSessionKey = 'vscode-docker.surveys.lastSession';
+const surveyRespondedKeyPrefix = 'vscode-containers.surveys.response';
+const surveyFlightPrefix = 'vscode-containers.surveys';
+const lastToastedSessionKey = 'vscode-containers.surveys.lastSession';
 
 // A random value between 0 and slushTime will be added to / subtracted from the activation delay
 const slushTime = 3000;

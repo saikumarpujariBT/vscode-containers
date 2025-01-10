@@ -1,8 +1,8 @@
 {
-    "name": "vscode-docker",
+    "name": "vscode-containers",
     "version": "1.29.4",
     "publisher": "ms-azuretools",
-    "displayName": "Docker",
+    "displayName": "Container Tools",
     "description": "Makes it easy to create, manage, and debug containerized applications.",
     "license": "SEE LICENSE IN LICENSE.md",
     "icon": "resources/docker_blue.png",
@@ -18,6 +18,7 @@
     ],
     "keywords": [
         "docker",
+        "podman",
         "compose",
         "container",
         "containers",
@@ -25,16 +26,16 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/microsoft/vscode-docker"
+        "url": "https://github.com/microsoft/vscode-containers"
     },
-    "homepage": "https://github.com/Microsoft/vscode-docker/blob/main/README.md",
+    "homepage": "https://github.com/Microsoft/vscode-containers/blob/main/README.md",
     "activationEvents": [
         "onTaskType:docker-build",
         "onTaskType:docker-run",
         "onTaskType:docker-compose",
         "onDebugInitialConfigurations",
         "onDebugResolve:docker",
-        "onFileSystem:docker",
+        "onFileSystem:containers",
         "onLanguage:dockerfile",
         "onLanguage:dockercompose"
     ],
@@ -43,567 +44,567 @@
         "menus": {
             "commandPalette": [
                 {
-                    "command": "vscode-docker.openDockerDownloadPage",
+                    "command": "vscode-containers.openDockerDownloadPage",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.containers.downloadFile",
+                    "command": "vscode-containers.containers.downloadFile",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.containers.openFile",
+                    "command": "vscode-containers.containers.openFile",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.containers.select",
+                    "command": "vscode-containers.containers.select",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.registries.reconnectRegistry",
+                    "command": "vscode-containers.registries.reconnectRegistry",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.logs",
+                    "command": "vscode-containers.containers.composeGroup.logs",
                     "when": "config.docker.containers.groupBy == 'Compose Project Name'"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.start",
+                    "command": "vscode-containers.containers.composeGroup.start",
                     "when": "config.docker.containers.groupBy == 'Compose Project Name'"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.stop",
+                    "command": "vscode-containers.containers.composeGroup.stop",
                     "when": "config.docker.containers.groupBy == 'Compose Project Name'"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.restart",
+                    "command": "vscode-containers.containers.composeGroup.restart",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.down",
+                    "command": "vscode-containers.containers.composeGroup.down",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.compose.down",
+                    "command": "vscode-containers.compose.down",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.compose.restart",
+                    "command": "vscode-containers.compose.restart",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.compose.up",
+                    "command": "vscode-containers.compose.up",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.compose.up.subset",
+                    "command": "vscode-containers.compose.up.subset",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.configure",
+                    "command": "vscode-containers.configure",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.configureCompose",
+                    "command": "vscode-containers.configureCompose",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.debugging.initializeForDebugging",
+                    "command": "vscode-containers.debugging.initializeForDebugging",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.images.build",
+                    "command": "vscode-containers.images.build",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.registries.azure.buildImage",
+                    "command": "vscode-containers.registries.azure.buildImage",
                     "when": "isWorkspaceTrusted"
                 },
                 {
-                    "command": "vscode-docker.help.openWalkthrough",
+                    "command": "vscode-containers.help.openWalkthrough",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.images.showDangling",
+                    "command": "vscode-containers.images.showDangling",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.images.hideDangling",
+                    "command": "vscode-containers.images.hideDangling",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.images.group.remove",
+                    "command": "vscode-containers.images.group.remove",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.containers.group.remove",
+                    "command": "vscode-containers.containers.group.remove",
                     "when": "never"
                 },
                 {
-                    "command": "vscode-docker.activateRegistryProviders",
+                    "command": "vscode-containers.activateRegistryProviders",
                     "when": "never"
                 }
             ],
             "editor/context": [
                 {
                     "when": "isWorkspaceTrusted && editorLangId == dockerfile",
-                    "command": "vscode-docker.registries.azure.buildImage",
+                    "command": "vscode-containers.registries.azure.buildImage",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && editorLangId == dockercompose",
-                    "command": "vscode-docker.compose.down",
+                    "command": "vscode-containers.compose.down",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && editorLangId == dockercompose",
-                    "command": "vscode-docker.compose.restart",
+                    "command": "vscode-containers.compose.restart",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && editorLangId == dockercompose",
-                    "command": "vscode-docker.compose.up",
+                    "command": "vscode-containers.compose.up",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && editorLangId == dockercompose",
-                    "command": "vscode-docker.compose.up.subset",
+                    "command": "vscode-containers.compose.up.subset",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && editorLangId == dockerfile",
-                    "command": "vscode-docker.images.build",
+                    "command": "vscode-containers.images.build",
                     "group": "docker"
                 }
             ],
             "explorer/context": [
                 {
                     "when": "isWorkspaceTrusted && resourceFilename =~ /dockerfile/i",
-                    "command": "vscode-docker.registries.azure.buildImage",
+                    "command": "vscode-containers.registries.azure.buildImage",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && resourceLangId == dockercompose",
-                    "command": "vscode-docker.compose.down",
+                    "command": "vscode-containers.compose.down",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && resourceLangId == dockercompose",
-                    "command": "vscode-docker.compose.restart",
+                    "command": "vscode-containers.compose.restart",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && resourceLangId == dockercompose",
-                    "command": "vscode-docker.compose.up",
+                    "command": "vscode-containers.compose.up",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && resourceLangId == dockercompose",
-                    "command": "vscode-docker.compose.up.subset",
+                    "command": "vscode-containers.compose.up.subset",
                     "group": "docker"
                 },
                 {
                     "when": "isWorkspaceTrusted && resourceLangId == dockerfile",
-                    "command": "vscode-docker.images.build",
+                    "command": "vscode-containers.images.build",
                     "group": "docker"
                 }
             ],
             "view/title": [
                 {
-                    "command": "vscode-docker.containers.prune",
-                    "when": "view == dockerContainers",
+                    "command": "vscode-containers.containers.prune",
+                    "when": "view == vscode-containers.views.containers",
                     "group": "navigation@1"
                 },
                 {
-                    "command": "vscode-docker.containers.configureExplorer",
-                    "when": "view == dockerContainers",
+                    "command": "vscode-containers.containers.configureExplorer",
+                    "when": "view == vscode-containers.views.containers",
                     "group": "navigation@8"
                 },
                 {
-                    "command": "vscode-docker.networks.configureExplorer",
-                    "when": "view == dockerNetworks",
+                    "command": "vscode-containers.networks.configureExplorer",
+                    "when": "view == vscode-containers.views.networks",
                     "group": "navigation@8"
                 },
                 {
-                    "command": "vscode-docker.containers.refresh",
-                    "when": "view == dockerContainers",
+                    "command": "vscode-containers.containers.refresh",
+                    "when": "view == vscode-containers.views.containers",
                     "group": "navigation@9"
                 },
                 {
-                    "command": "vscode-docker.networks.create",
-                    "when": "view == dockerNetworks",
+                    "command": "vscode-containers.networks.create",
+                    "when": "view == vscode-containers.views.networks",
                     "group": "navigation@1"
                 },
                 {
-                    "command": "vscode-docker.networks.prune",
-                    "when": "view == dockerNetworks",
+                    "command": "vscode-containers.networks.prune",
+                    "when": "view == vscode-containers.views.networks",
                     "group": "navigation@2"
                 },
                 {
-                    "command": "vscode-docker.networks.refresh",
-                    "when": "view == dockerNetworks",
+                    "command": "vscode-containers.networks.refresh",
+                    "when": "view == vscode-containers.views.networks",
                     "group": "navigation@9"
                 },
                 {
-                    "command": "vscode-docker.images.prune",
-                    "when": "view == dockerImages",
+                    "command": "vscode-containers.images.prune",
+                    "when": "view == vscode-containers.views.images",
                     "group": "navigation@2"
                 },
                 {
-                    "command": "vscode-docker.images.showDangling",
-                    "when": "view == dockerImages && !vscode-docker:danglingShown",
+                    "command": "vscode-containers.images.showDangling",
+                    "when": "view == vscode-containers.views.images && !vscode-containers:danglingShown",
                     "group": "navigation@3"
                 },
                 {
-                    "command": "vscode-docker.images.hideDangling",
-                    "when": "view == dockerImages && vscode-docker:danglingShown",
+                    "command": "vscode-containers.images.hideDangling",
+                    "when": "view == vscode-containers.views.images && vscode-containers:danglingShown",
                     "group": "navigation@3"
                 },
                 {
-                    "command": "vscode-docker.images.configureExplorer",
-                    "when": "view == dockerImages",
+                    "command": "vscode-containers.images.configureExplorer",
+                    "when": "view == vscode-containers.views.images",
                     "group": "navigation@8"
                 },
                 {
-                    "command": "vscode-docker.images.refresh",
-                    "when": "view == dockerImages",
+                    "command": "vscode-containers.images.refresh",
+                    "when": "view == vscode-containers.views.images",
                     "group": "navigation@9"
                 },
                 {
-                    "command": "vscode-docker.registries.refresh",
-                    "when": "view == dockerRegistries",
+                    "command": "vscode-containers.registries.refresh",
+                    "when": "view == vscode-containers.views.registries",
                     "group": "navigation@9"
                 },
                 {
-                    "command": "vscode-docker.registries.connectRegistry",
-                    "when": "view == dockerRegistries",
+                    "command": "vscode-containers.registries.connectRegistry",
+                    "when": "view == vscode-containers.views.registries",
                     "group": "navigation@1"
                 },
                 {
-                    "command": "vscode-docker.registries.help",
-                    "when": "view == dockerRegistries",
+                    "command": "vscode-containers.registries.help",
+                    "when": "view == vscode-containers.views.registries",
                     "group": "navigation@10"
                 },
                 {
-                    "command": "vscode-docker.volumes.prune",
-                    "when": "view == dockerVolumes",
+                    "command": "vscode-containers.volumes.prune",
+                    "when": "view == vscode-containers.views.volumes",
                     "group": "navigation@1"
                 },
                 {
-                    "command": "vscode-docker.volumes.configureExplorer",
-                    "when": "view == dockerVolumes",
+                    "command": "vscode-containers.volumes.configureExplorer",
+                    "when": "view == vscode-containers.views.volumes",
                     "group": "navigation@8"
                 },
                 {
-                    "command": "vscode-docker.volumes.refresh",
-                    "when": "view == dockerVolumes",
+                    "command": "vscode-containers.volumes.refresh",
+                    "when": "view == vscode-containers.views.volumes",
                     "group": "navigation@9"
                 },
                 {
-                    "command": "vscode-docker.contexts.configureExplorer",
-                    "when": "view == vscode-docker.views.dockerContexts",
+                    "command": "vscode-containers.contexts.configureExplorer",
+                    "when": "view == vscode-containers.views.dockerContexts",
                     "group": "navigation@8"
                 },
                 {
-                    "command": "vscode-docker.contexts.refresh",
-                    "when": "view == vscode-docker.views.dockerContexts",
+                    "command": "vscode-containers.contexts.refresh",
+                    "when": "view == vscode-containers.views.dockerContexts",
                     "group": "navigation@9"
                 },
                 {
-                    "command": "vscode-docker.contexts.help",
-                    "when": "view == vscode-docker.views.dockerContexts",
+                    "command": "vscode-containers.contexts.help",
+                    "when": "view == vscode-containers.views.dockerContexts",
                     "group": "navigation@10"
                 },
                 {
-                    "command": "vscode-docker.help",
-                    "when": "view == dockerContainers || view == dockerImages || view == dockerVolumes || view == dockerNetworks",
+                    "command": "vscode-containers.help",
+                    "when": "view == vscode-containers.views.containers || view == vscode-containers.views.images || view == vscode-containers.views.volumes || view == vscode-containers.views.networks",
                     "group": "navigation@10"
                 }
             ],
             "view/item/context": [
                 {
-                    "command": "vscode-docker.containers.viewLogs",
-                    "when": "view == dockerContainers && viewItem =~ /container$/i",
+                    "command": "vscode-containers.containers.viewLogs",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /container$/i",
                     "group": "containers_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.containers.attachShell",
-                    "when": "view == dockerContainers && viewItem =~ /^runningContainer$/i",
+                    "command": "vscode-containers.containers.attachShell",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /^runningContainer$/i",
                     "group": "containers_1_general@2"
                 },
                 {
-                    "command": "vscode-docker.containers.inspect",
-                    "when": "view == dockerContainers && viewItem =~ /container$/i",
+                    "command": "vscode-containers.containers.inspect",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /container$/i",
                     "group": "containers_1_general@3"
                 },
                 {
-                    "command": "vscode-docker.containers.browse",
-                    "when": "view == dockerContainers && viewItem =~ /runningContainer$/i",
+                    "command": "vscode-containers.containers.browse",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /runningContainer$/i",
                     "group": "containers_1_general@4"
                 },
                 {
-                    "command": "vscode-docker.containers.start",
-                    "when": "view == dockerContainers && viewItem =~ /^(created|dead|exited|paused|terminated)Container$/i",
+                    "command": "vscode-containers.containers.start",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /^(created|dead|exited|paused|terminated)Container$/i",
                     "group": "containers_1_general@5"
                 },
                 {
-                    "command": "vscode-docker.containers.downloadFile",
-                    "when": "view == dockerContainers && viewItem == containerFile",
+                    "command": "vscode-containers.containers.downloadFile",
+                    "when": "view == vscode-containers.views.containers && viewItem == containerFile",
                     "group": "files_1@2"
                 },
                 {
-                    "command": "vscode-docker.containers.openFile",
-                    "when": "view == dockerContainers && viewItem == containerFile",
+                    "command": "vscode-containers.containers.openFile",
+                    "when": "view == vscode-containers.views.containers && viewItem == containerFile",
                     "group": "files_1@1"
                 },
                 {
-                    "command": "vscode-docker.containers.stop",
-                    "when": "view == dockerContainers && viewItem =~ /^(paused|restarting|running)Container$/i",
+                    "command": "vscode-containers.containers.stop",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /^(paused|restarting|running)Container$/i",
                     "group": "containers_1_general@6"
                 },
                 {
-                    "command": "vscode-docker.containers.restart",
-                    "when": "view == dockerContainers && viewItem =~ /^runningContainer$/i",
+                    "command": "vscode-containers.containers.restart",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /^runningContainer$/i",
                     "group": "containers_1_general@7"
                 },
                 {
-                    "command": "vscode-docker.containers.remove",
-                    "when": "view == dockerContainers && viewItem =~ /container$/i",
+                    "command": "vscode-containers.containers.remove",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /container$/i",
                     "group": "containers_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.containers.group.remove",
-                    "when": "view == dockerContainers && viewItem =~ /containerGroup$/i",
+                    "command": "vscode-containers.containers.group.remove",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /containerGroup$/i",
                     "group": "containers_group_1_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.logs",
-                    "when": "view == dockerContainers && viewItem =~ /composeGroup$/i",
+                    "command": "vscode-containers.containers.composeGroup.logs",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /composeGroup$/i",
                     "group": "composeGroup_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.start",
-                    "when": "view == dockerContainers && viewItem =~ /composeGroup$/i",
+                    "command": "vscode-containers.containers.composeGroup.start",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /composeGroup$/i",
                     "group": "composeGroup_1_general@2"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.stop",
-                    "when": "view == dockerContainers && viewItem =~ /composeGroup$/i",
+                    "command": "vscode-containers.containers.composeGroup.stop",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /composeGroup$/i",
                     "group": "composeGroup_1_general@3"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.restart",
-                    "when": "view == dockerContainers && viewItem =~ /composeGroup$/i",
+                    "command": "vscode-containers.containers.composeGroup.restart",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /composeGroup$/i",
                     "group": "composeGroup_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.containers.composeGroup.down",
-                    "when": "view == dockerContainers && viewItem =~ /composeGroup$/i",
+                    "command": "vscode-containers.containers.composeGroup.down",
+                    "when": "view == vscode-containers.views.containers && viewItem =~ /composeGroup$/i",
                     "group": "composeGroup_2_destructive@2"
                 },
                 {
-                    "command": "vscode-docker.images.run",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.run",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_1_run@1"
                 },
                 {
-                    "command": "vscode-docker.images.runInteractive",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.runInteractive",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_1_run@2"
                 },
                 {
-                    "command": "vscode-docker.images.inspect",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.inspect",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_2_general@1"
                 },
                 {
-                    "command": "vscode-docker.images.pull",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.pull",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_2_general@2"
                 },
                 {
-                    "command": "vscode-docker.images.push",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.push",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_2_general@3"
                 },
                 {
-                    "command": "vscode-docker.images.tag",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.tag",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_2_general@4"
                 },
                 {
-                    "command": "vscode-docker.images.copyFullTag",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.copyFullTag",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_2_general@5"
                 },
                 {
-                    "command": "vscode-docker.images.remove",
-                    "when": "view == dockerImages && viewItem == image",
+                    "command": "vscode-containers.images.remove",
+                    "when": "view == vscode-containers.views.images && viewItem == image",
                     "group": "images_3_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.images.group.remove",
-                    "when": "view == dockerImages && viewItem =~ /imageGroup$/i",
+                    "command": "vscode-containers.images.group.remove",
+                    "when": "view == vscode-containers.views.images && viewItem =~ /imageGroup$/i",
                     "group": "images_group_1_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.networks.inspect",
-                    "when": "view == dockerNetworks && viewItem =~ /network$/i",
+                    "command": "vscode-containers.networks.inspect",
+                    "when": "view == vscode-containers.views.networks && viewItem =~ /network$/i",
                     "group": "networks_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.networks.remove",
-                    "when": "view == dockerNetworks && viewItem =~ /^customNetwork$/i",
+                    "command": "vscode-containers.networks.remove",
+                    "when": "view == vscode-containers.views.networks && viewItem =~ /^customNetwork$/i",
                     "group": "networks_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.registries.azure.createRegistry",
-                    "when": "view == dockerRegistries && viewItem =~ /azuresubscription/i",
+                    "command": "vscode-containers.registries.azure.createRegistry",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /azuresubscription/i",
                     "group": "regs_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.registries.azure.deleteRegistry",
-                    "when": "view == dockerRegistries && viewItem =~ /azure;.*commonregistry/i",
+                    "command": "vscode-containers.registries.azure.deleteRegistry",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /azure;.*commonregistry/i",
                     "group": "regs_reg_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.registries.pullRepository",
-                    "when": "view == dockerRegistries && viewItem =~ /commonrepository/",
+                    "command": "vscode-containers.registries.pullRepository",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commonrepository/",
                     "group": "regs_repo_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.registries.azure.deleteRepository",
-                    "when": "view == dockerRegistries && viewItem =~ /azure;.*commonrepository/i",
+                    "command": "vscode-containers.registries.azure.deleteRepository",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /azure;.*commonrepository/i",
                     "group": "regs_repo_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.registries.pullImage",
-                    "when": "view == dockerRegistries && viewItem =~ /commontag/i",
+                    "command": "vscode-containers.registries.pullImage",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commontag/i",
                     "group": "regs_tag_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.registries.copyRemoteFullTag",
-                    "when": "view == dockerRegistries && viewItem =~ /commontag/i",
+                    "command": "vscode-containers.registries.copyRemoteFullTag",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commontag/i",
                     "group": "regs_tag_1_general@2"
                 },
                 {
-                    "command": "vscode-docker.registries.copyImageDigest",
-                    "when": "view == dockerRegistries && viewItem =~ /commontag/i && !(viewItem =~ /commontag;.*dockerhub/i)",
+                    "command": "vscode-containers.registries.copyImageDigest",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commontag/i && !(viewItem =~ /commontag;.*dockerhub/i)",
                     "group": "regs_tag_1_general@3"
                 },
                 {
-                    "command": "vscode-docker.registries.inspectRemoteImageManifest",
-                    "when": "view == dockerRegistries && viewItem =~ /commontag/i && !(viewItem =~ /commontag;.*dockerhub/i)",
+                    "command": "vscode-containers.registries.inspectRemoteImageManifest",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commontag/i && !(viewItem =~ /commontag;.*dockerhub/i)",
                     "group": "regs_tag_1_general@4"
                 },
                 {
-                    "command": "vscode-docker.registries.deployImageToAzure",
-                    "when": "view == dockerRegistries && viewItem =~ /commontag/i",
+                    "command": "vscode-containers.registries.deployImageToAzure",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commontag/i",
                     "group": "regs_tag_1_general@5"
                 },
                 {
-                    "command": "vscode-docker.registries.deployImageToAca",
-                    "when": "view == dockerRegistries && viewItem =~ /commontag/i",
+                    "command": "vscode-containers.registries.deployImageToAca",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commontag/i",
                     "group": "regs_tag_1_general@6"
                 },
                 {
-                    "command": "vscode-docker.registries.azure.untagImage",
-                    "when": "view == dockerRegistries && viewItem =~ /azure;.*commontag/i",
+                    "command": "vscode-containers.registries.azure.untagImage",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /azure;.*commontag/i",
                     "group": "regs_tag_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.registries.deleteImage",
-                    "when": "view == dockerRegistries && viewItem =~ /commontag/i && !(viewItem =~ /commontag;.*(dockerhub|github)/i)",
+                    "command": "vscode-containers.registries.deleteImage",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commontag/i && !(viewItem =~ /commontag;.*(dockerhub|github)/i)",
                     "group": "regs_tag_2_destructive@2"
                 },
                 {
-                    "command": "vscode-docker.registries.disconnectRegistry",
-                    "when": "view == dockerRegistries && viewItem =~ /commonregistryroot/i",
+                    "command": "vscode-containers.registries.disconnectRegistry",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commonregistryroot/i",
                     "group": "regs_yyy_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.registries.genericV2.removeTrackedRegistry",
-                    "when": "view == dockerRegistries && viewItem =~ /commonregistry;.*generic/i",
+                    "command": "vscode-containers.registries.genericV2.removeTrackedRegistry",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commonregistry;.*generic/i",
                     "group": "regs_yyy_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.registries.genericV2.addTrackedRegistry",
-                    "when": "view == dockerRegistries && viewItem =~ /commonregistryroot;.*generic/i",
+                    "command": "vscode-containers.registries.genericV2.addTrackedRegistry",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commonregistryroot;.*generic/i",
                     "group": "regs_yyy_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.registries.azure.openInPortal",
-                    "when": "view == dockerRegistries && viewItem =~ /azuresubscription|azure;.*(commonregistry|commonrepository)/i",
+                    "command": "vscode-containers.registries.azure.openInPortal",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /azuresubscription|azure;.*(commonregistry|commonrepository)/i",
                     "group": "regs_zzz_common@1"
                 },
                 {
-                    "command": "vscode-docker.registries.dockerHub.openInBrowser",
-                    "when": "view == dockerRegistries && viewItem =~ /(commonregistry|commonrepository|commontag);.*dockerhub/i",
+                    "command": "vscode-containers.registries.dockerHub.openInBrowser",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /(commonregistry|commonrepository|commontag);.*dockerhub/i",
                     "group": "regs_zzz_common@1"
                 },
                 {
-                    "command": "vscode-docker.registries.azure.viewProperties",
-                    "when": "view == dockerRegistries && viewItem =~ /azure;.*commonregistry/i",
+                    "command": "vscode-containers.registries.azure.viewProperties",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /azure;.*commonregistry/i",
                     "group": "regs_zzz_common@2"
                 },
                 {
-                    "command": "vscode-docker.registries.reconnectRegistry",
-                    "when": "view == dockerRegistries && viewItem =~ /registryConnectError/i",
+                    "command": "vscode-containers.registries.reconnectRegistry",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /registryConnectError/i",
                     "group": "regs_zzz_common@8"
                 },
                 {
-                    "command": "vscode-docker.registries.refresh",
-                    "when": "view == dockerRegistries && viewItem == connectedRegistries",
+                    "command": "vscode-containers.registries.refresh",
+                    "when": "view == vscode-containers.views.registries && viewItem == connectedRegistries",
                     "group": "regs_zzz_common@9"
                 },
                 {
-                    "command": "vscode-docker.registries.refresh",
-                    "when": "view == dockerRegistries && viewItem =~ /commonregistry|commonregistryroot|commonrepository/",
+                    "command": "vscode-containers.registries.refresh",
+                    "when": "view == vscode-containers.views.registries && viewItem =~ /commonregistry|commonregistryroot|commonrepository/",
                     "group": "regs_zzz_common@9"
                 },
                 {
-                    "command": "vscode-docker.volumes.inspect",
-                    "when": "view == dockerVolumes && viewItem == volume",
+                    "command": "vscode-containers.volumes.inspect",
+                    "when": "view == vscode-containers.views.volumes && viewItem == volume",
                     "group": "volumes_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.volumes.remove",
-                    "when": "view == dockerVolumes && viewItem == volume",
+                    "command": "vscode-containers.volumes.remove",
+                    "when": "view == vscode-containers.views.volumes && viewItem == volume",
                     "group": "volumes_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.contexts.inspect",
-                    "when": "view == vscode-docker.views.dockerContexts && viewItem =~ /Context/i",
+                    "command": "vscode-containers.contexts.inspect",
+                    "when": "view == vscode-containers.views.dockerContexts && viewItem =~ /Context/i",
                     "group": "contexts_1_general@1"
                 },
                 {
-                    "command": "vscode-docker.contexts.use",
-                    "when": "view == vscode-docker.views.dockerContexts && viewItem =~ /Context/i",
+                    "command": "vscode-containers.contexts.use",
+                    "when": "view == vscode-containers.views.dockerContexts && viewItem =~ /Context/i",
                     "group": "contexts_1_general@2"
                 },
                 {
-                    "command": "vscode-docker.contexts.use",
-                    "when": "view == vscode-docker.views.dockerContexts && viewItem =~ /Context/i",
+                    "command": "vscode-containers.contexts.use",
+                    "when": "view == vscode-containers.views.dockerContexts && viewItem =~ /Context/i",
                     "group": "inline"
                 },
                 {
-                    "command": "vscode-docker.contexts.remove",
-                    "when": "view == vscode-docker.views.dockerContexts && viewItem =~ /^customContext/i",
+                    "command": "vscode-containers.contexts.remove",
+                    "when": "view == vscode-containers.views.dockerContexts && viewItem =~ /^customContext/i",
                     "group": "contexts_2_destructive@1"
                 },
                 {
-                    "command": "vscode-docker.containers.downloadFile",
-                    "when": "view == dockerContainers && viewItem == containerFile",
+                    "command": "vscode-containers.containers.downloadFile",
+                    "when": "view == vscode-containers.views.containers && viewItem == containerFile",
                     "group": "inline@2"
                 },
                 {
-                    "command": "vscode-docker.containers.openFile",
-                    "when": "view == dockerContainers && viewItem == containerFile",
+                    "command": "vscode-containers.containers.openFile",
+                    "when": "view == vscode-containers.views.containers && viewItem == containerFile",
                     "group": "inline@1"
                 }
             ],
             "issue/reporter": [
                 {
-                    "command": "vscode-docker.help.reportIssue"
+                    "command": "vscode-containers.help.reportIssue"
                 }
             ]
         },
@@ -623,14 +624,14 @@
                         "properties": {
                             "containerName": {
                                 "type": "string",
-                                "description": "%vscode-docker.debug.containerName%"
+                                "description": "%vscode-containers.debug.containerName%"
                             },
                             "dockerServerReadyAction": {
-                                "description": "%vscode-docker.debug.dockerServerReadyAction.description%",
+                                "description": "%vscode-containers.debug.dockerServerReadyAction.description%",
                                 "properties": {
                                     "action": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.dockerServerReadyAction.action%",
+                                        "description": "%vscode-containers.debug.dockerServerReadyAction.action%",
                                         "enum": [
                                             "debugWithChrome",
                                             "openExternally"
@@ -638,32 +639,32 @@
                                     },
                                     "containerName": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.dockerServerReadyAction.containerName%"
+                                        "description": "%vscode-containers.debug.dockerServerReadyAction.containerName%"
                                     },
                                     "pattern": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.dockerServerReadyAction.pattern%",
+                                        "description": "%vscode-containers.debug.dockerServerReadyAction.pattern%",
                                         "default": "(https?://\\S+|[0-9]+)"
                                     },
                                     "uriFormat": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.dockerServerReadyAction.uriFormat%",
+                                        "description": "%vscode-containers.debug.dockerServerReadyAction.uriFormat%",
                                         "default": "http://localhost:%s"
                                     },
                                     "webRoot": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.dockerServerReadyAction.webRoot%"
+                                        "description": "%vscode-containers.debug.dockerServerReadyAction.webRoot%"
                                     }
                                 }
                             },
                             "removeContainerAfterDebug": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.debug.removeContainerAfterDebug%",
+                                "description": "%vscode-containers.debug.removeContainerAfterDebug%",
                                 "default": true
                             },
                             "platform": {
                                 "type": "string",
-                                "description": "%vscode-docker.debug.platform%",
+                                "description": "%vscode-containers.debug.platform%",
                                 "enum": [
                                     "netCore",
                                     "node",
@@ -671,11 +672,11 @@
                                 ]
                             },
                             "netCore": {
-                                "description": "%vscode-docker.debug.netCore.description%",
+                                "description": "%vscode-containers.debug.netCore.description%",
                                 "properties": {
                                     "appProject": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.netCore.appProject%"
+                                        "description": "%vscode-containers.debug.netCore.appProject%"
                                     }
                                 },
                                 "required": [
@@ -683,79 +684,79 @@
                                 ]
                             },
                             "node": {
-                                "description": "%vscode-docker.debug.node.description%",
+                                "description": "%vscode-containers.debug.node.description%",
                                 "properties": {
                                     "port": {
                                         "type": "integer",
-                                        "description": "%vscode-docker.debug.node.port%"
+                                        "description": "%vscode-containers.debug.node.port%"
                                     },
                                     "address": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.node.address%"
+                                        "description": "%vscode-containers.debug.node.address%"
                                     },
                                     "sourceMaps": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.node.sourceMaps%"
+                                        "description": "%vscode-containers.debug.node.sourceMaps%"
                                     },
                                     "outFiles": {
                                         "type": "array",
-                                        "description": "%vscode-docker.debug.node.outFiles%",
+                                        "description": "%vscode-containers.debug.node.outFiles%",
                                         "items": {
                                             "type": "string"
                                         }
                                     },
                                     "autoAttachChildProcesses": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.node.autoAttachChildProcesses%"
+                                        "description": "%vscode-containers.debug.node.autoAttachChildProcesses%"
                                     },
                                     "timeout": {
                                         "type": "integer",
-                                        "description": "%vscode-docker.debug.node.timeout%"
+                                        "description": "%vscode-containers.debug.node.timeout%"
                                     },
                                     "stopOnEntry": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.node.stopOnEntry%"
+                                        "description": "%vscode-containers.debug.node.stopOnEntry%"
                                     },
                                     "localRoot": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.node.localRoot%"
+                                        "description": "%vscode-containers.debug.node.localRoot%"
                                     },
                                     "package": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.node.package%"
+                                        "description": "%vscode-containers.debug.node.package%"
                                     },
                                     "remoteRoot": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.node.remoteRoot%"
+                                        "description": "%vscode-containers.debug.node.remoteRoot%"
                                     },
                                     "smartStep": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.node.smartStep%"
+                                        "description": "%vscode-containers.debug.node.smartStep%"
                                     },
                                     "skipFiles": {
                                         "type": "array",
-                                        "description": "%vscode-docker.debug.node.skipFiles%",
+                                        "description": "%vscode-containers.debug.node.skipFiles%",
                                         "items": {
                                             "type": "string"
                                         }
                                     },
                                     "trace": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.node.trace%"
+                                        "description": "%vscode-containers.debug.node.trace%"
                                     }
                                 }
                             },
                             "python": {
-                                "description": "%vscode-docker.debug.python.description%",
+                                "description": "%vscode-containers.debug.python.description%",
                                 "properties": {
                                     "host": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.python.host%",
+                                        "description": "%vscode-containers.debug.python.host%",
                                         "default": "localhost"
                                     },
                                     "port": {
                                         "type": "number",
-                                        "description": "%vscode-docker.debug.python.port%",
+                                        "description": "%vscode-containers.debug.python.port%",
                                         "default": 5678
                                     },
                                     "pathMappings": {
@@ -765,37 +766,37 @@
                                             "properties": {
                                                 "localRoot": {
                                                     "type": "string",
-                                                    "description": "%vscode-docker.debug.python.pathMappings.localRoot%"
+                                                    "description": "%vscode-containers.debug.python.pathMappings.localRoot%"
                                                 },
                                                 "remoteRoot": {
                                                     "type": "string",
-                                                    "description": "%vscode-docker.debug.python.pathMappings.remoteRoot%"
+                                                    "description": "%vscode-containers.debug.python.pathMappings.remoteRoot%"
                                                 }
                                             }
                                         }
                                     },
                                     "justMyCode": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.python.justMyCode%"
+                                        "description": "%vscode-containers.debug.python.justMyCode%"
                                     },
                                     "django": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.python.django%",
+                                        "description": "%vscode-containers.debug.python.django%",
                                         "default": false
                                     },
                                     "fastapi": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.python.fastapi%",
+                                        "description": "%vscode-containers.debug.python.fastapi%",
                                         "default": false
                                     },
                                     "jinja": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.debug.python.jinja%",
+                                        "description": "%vscode-containers.debug.python.jinja%",
                                         "default": false
                                     },
                                     "projectType": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.python.projectType%",
+                                        "description": "%vscode-containers.debug.python.projectType%",
                                         "enum": [
                                             "django",
                                             "fastapi",
@@ -805,7 +806,7 @@
                                     },
                                     "args": {
                                         "type": "array",
-                                        "description": "%vscode-docker.debug.python.args%",
+                                        "description": "%vscode-containers.debug.python.args%",
                                         "items": {
                                             "type": "string"
                                         }
@@ -818,36 +819,36 @@
                         "properties": {
                             "containerName": {
                                 "type": "string",
-                                "description": "%vscode-docker.debug.attach.containerName%"
+                                "description": "%vscode-containers.debug.attach.containerName%"
                             },
                             "processName": {
                                 "type": "string",
-                                "description": "%vscode-docker.debug.attach.processName%"
+                                "description": "%vscode-containers.debug.attach.processName%"
                             },
                             "processId": {
                                 "anyOf": [
                                     {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.attach.processIdString%",
+                                        "description": "%vscode-containers.debug.attach.processIdString%",
                                         "default": "${command:pickProcess}"
                                     },
                                     {
                                         "type": "integer",
-                                        "description": "%vscode-docker.debug.attach.processIdInteger%",
+                                        "description": "%vscode-containers.debug.attach.processIdInteger%",
                                         "default": 0
                                     }
                                 ]
                             },
                             "platform": {
                                 "type": "string",
-                                "description": "%vscode-docker.debug.attach.platform%",
+                                "description": "%vscode-containers.debug.attach.platform%",
                                 "enum": [
                                     "netCore"
                                 ]
                             },
                             "sourceFileMap": {
                                 "type": "object",
-                                "description": "%vscode-docker.debug.attach.sourceFileMap%",
+                                "description": "%vscode-containers.debug.attach.sourceFileMap%",
                                 "additionalProperties": {
                                     "type": "string"
                                 },
@@ -856,11 +857,11 @@
                                 }
                             },
                             "netCore": {
-                                "description": "%vscode-docker.debug.attach.netCore.description%",
+                                "description": "%vscode-containers.debug.attach.netCore.description%",
                                 "properties": {
                                     "debuggerPath": {
                                         "type": "string",
-                                        "description": "%vscode-docker.debug.attach.netCore.debuggerPath%"
+                                        "description": "%vscode-containers.debug.attach.netCore.debuggerPath%"
                                     }
                                 }
                             }
@@ -899,32 +900,32 @@
                 "type": "docker-build",
                 "properties": {
                     "dockerBuild": {
-                        "description": "%vscode-docker.tasks.docker-build.dockerBuild.description%",
+                        "description": "%vscode-containers.tasks.docker-build.dockerBuild.description%",
                         "properties": {
                             "buildArgs": {
                                 "type": "object",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.buildArgs%",
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.buildArgs%",
                                 "additionalProperties": {
                                     "type": "string"
                                 }
                             },
                             "context": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.context%",
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.context%",
                                 "default": "${workspaceFolder}"
                             },
                             "dockerfile": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.dockerfile%",
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.dockerfile%",
                                 "default": "${workspaceFolder}/Dockerfile"
                             },
                             "labels": {
                                 "type": "object",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.labels.description%",
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.labels.description%",
                                 "properties": {
                                     "includeDefaults": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.tasks.docker-build.dockerBuild.labels.includeDefaults%",
+                                        "description": "%vscode-containers.tasks.docker-build.dockerBuild.labels.includeDefaults%",
                                         "default": true
                                     }
                                 },
@@ -951,7 +952,7 @@
                                                         "type": "string"
                                                     }
                                                 ],
-                                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.platform.os%"
+                                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.platform.os%"
                                             },
                                             "architecture": {
                                                 "anyOf": [
@@ -968,7 +969,7 @@
                                                         "type": "string"
                                                     }
                                                 ],
-                                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.platform.architecture%"
+                                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.platform.architecture%"
                                             }
                                         }
                                     },
@@ -991,23 +992,23 @@
                                         "type": "string"
                                     }
                                 ],
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.platform%"
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.platform%"
                             },
                             "tag": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.tag%"
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.tag%"
                             },
                             "target": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.target%"
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.target%"
                             },
                             "pull": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.pull%"
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.pull%"
                             },
                             "customOptions": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-build.dockerBuild.customOptions%"
+                                "description": "%vscode-containers.tasks.docker-build.dockerBuild.customOptions%"
                             }
                         },
                         "required": [
@@ -1016,7 +1017,7 @@
                     },
                     "platform": {
                         "type": "string",
-                        "description": "%vscode-docker.tasks.docker-build.platform%",
+                        "description": "%vscode-containers.tasks.docker-build.platform%",
                         "enum": [
                             "netCore",
                             "node",
@@ -1024,11 +1025,11 @@
                         ]
                     },
                     "netCore": {
-                        "description": "%vscode-docker.tasks.docker-build.netCore.description%",
+                        "description": "%vscode-containers.tasks.docker-build.netCore.description%",
                         "properties": {
                             "appProject": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-build.netCore.appProject%"
+                                "description": "%vscode-containers.tasks.docker-build.netCore.appProject%"
                             }
                         },
                         "required": [
@@ -1036,28 +1037,28 @@
                         ]
                     },
                     "node": {
-                        "description": "%vscode-docker.tasks.docker-build.node.description%",
+                        "description": "%vscode-containers.tasks.docker-build.node.description%",
                         "properties": {
                             "package": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-build.node.package%"
+                                "description": "%vscode-containers.tasks.docker-build.node.package%"
                             }
                         }
                     },
                     "python": {
-                        "description": "%vscode-docker.tasks.docker-build.python.description%",
+                        "description": "%vscode-containers.tasks.docker-build.python.description%",
                         "type": "object"
                     },
                     "options": {
-                        "description": "%vscode-docker.tasks.options.description%",
+                        "description": "%vscode-containers.tasks.options.description%",
                         "properties": {
                             "cwd": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.options.cwd.description%"
+                                "description": "%vscode-containers.tasks.options.cwd.description%"
                             },
                             "env": {
                                 "type": "object",
-                                "description": "%vscode-docker.tasks.options.env.description%",
+                                "description": "%vscode-containers.tasks.options.env.description%",
                                 "additionalProperties": {
                                     "type": "string"
                                 }
@@ -1073,45 +1074,45 @@
                 "type": "docker-run",
                 "properties": {
                     "dockerRun": {
-                        "description": "%vscode-docker.tasks.docker-run.dockerRun.description%",
+                        "description": "%vscode-containers.tasks.docker-run.dockerRun.description%",
                         "properties": {
                             "command": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.command%"
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.command%"
                             },
                             "entrypoint": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.entrypoint%"
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.entrypoint%"
                             },
                             "containerName": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.containerName%"
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.containerName%"
                             },
                             "env": {
                                 "type": "object",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.env%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.env%",
                                 "additionalProperties": {
                                     "type": "string"
                                 }
                             },
                             "envFiles": {
                                 "type": "array",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.envFiles%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.envFiles%",
                                 "items": {
                                     "type": "string"
                                 }
                             },
                             "image": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.image%"
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.image%"
                             },
                             "labels": {
                                 "type": "object",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.labels.description%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.labels.description%",
                                 "properties": {
                                     "includeDefaults": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.tasks.docker-run.dockerRun.labels.includeDefaults%",
+                                        "description": "%vscode-containers.tasks.docker-run.dockerRun.labels.includeDefaults%",
                                         "default": true
                                     }
                                 },
@@ -1121,15 +1122,15 @@
                             },
                             "network": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.network%"
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.network%"
                             },
                             "networkAlias": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.networkAlias%"
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.networkAlias%"
                             },
                             "os": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.os%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.os%",
                                 "default": "Linux",
                                 "enum": [
                                     "Linux",
@@ -1138,21 +1139,21 @@
                             },
                             "ports": {
                                 "type": "array",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.ports.description%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.ports.description%",
                                 "items": {
                                     "type": "object",
                                     "properties": {
                                         "hostPort": {
                                             "type": "integer",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.ports.hostPort%"
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.ports.hostPort%"
                                         },
                                         "containerPort": {
                                             "type": "integer",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.ports.containerPort%"
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.ports.containerPort%"
                                         },
                                         "protocol": {
                                             "type": "string",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.ports.protocol%",
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.ports.protocol%",
                                             "enum": [
                                                 "tcp",
                                                 "udp"
@@ -1166,22 +1167,22 @@
                             },
                             "portsPublishAll": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.portsPublishAll%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.portsPublishAll%",
                                 "default": true
                             },
                             "extraHosts": {
                                 "type": "array",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.extraHosts.description%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.extraHosts.description%",
                                 "items": {
                                     "type": "object",
                                     "properties": {
                                         "hostname": {
                                             "type": "string",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.extraHosts.hostname%"
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.extraHosts.hostname%"
                                         },
                                         "ip": {
                                             "type": "string",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.extraHosts.ip%"
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.extraHosts.ip%"
                                         }
                                     },
                                     "required": [
@@ -1192,21 +1193,21 @@
                             },
                             "volumes": {
                                 "type": "array",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.volumes.description%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.volumes.description%",
                                 "items": {
                                     "type": "object",
                                     "properties": {
                                         "localPath": {
                                             "type": "string",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.volumes.localPath%"
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.volumes.localPath%"
                                         },
                                         "containerPath": {
                                             "type": "string",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.volumes.containerPath%"
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.volumes.containerPath%"
                                         },
                                         "permissions": {
                                             "type": "string",
-                                            "description": "%vscode-docker.tasks.docker-run.dockerRun.volumes.permissions%",
+                                            "description": "%vscode-containers.tasks.docker-run.dockerRun.volumes.permissions%",
                                             "enum": [
                                                 "rw",
                                                 "ro"
@@ -1221,18 +1222,18 @@
                             },
                             "remove": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.remove%",
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.remove%",
                                 "default": false
                             },
                             "customOptions": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.dockerRun.customOptions%"
+                                "description": "%vscode-containers.tasks.docker-run.dockerRun.customOptions%"
                             }
                         }
                     },
                     "platform": {
                         "type": "string",
-                        "description": "%vscode-docker.tasks.docker-run.platform%",
+                        "description": "%vscode-containers.tasks.docker-run.platform%",
                         "enum": [
                             "netCore",
                             "node",
@@ -1240,19 +1241,19 @@
                         ]
                     },
                     "netCore": {
-                        "description": "%vscode-docker.tasks.docker-run.netCore.description%",
+                        "description": "%vscode-containers.tasks.docker-run.netCore.description%",
                         "properties": {
                             "appProject": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.netCore.appProject%"
+                                "description": "%vscode-containers.tasks.docker-run.netCore.appProject%"
                             },
                             "enableDebugging": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.tasks.docker-run.netCore.enableDebugging%"
+                                "description": "%vscode-containers.tasks.docker-run.netCore.enableDebugging%"
                             },
                             "configureSsl": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.tasks.docker-run.netCore.configureSsl%"
+                                "description": "%vscode-containers.tasks.docker-run.netCore.configureSsl%"
                             }
                         },
                         "required": [
@@ -1260,55 +1261,55 @@
                         ]
                     },
                     "node": {
-                        "description": "%vscode-docker.tasks.docker-run.node.description%",
+                        "description": "%vscode-containers.tasks.docker-run.node.description%",
                         "properties": {
                             "enableDebugging": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.tasks.docker-run.node.enableDebugging%"
+                                "description": "%vscode-containers.tasks.docker-run.node.enableDebugging%"
                             },
                             "inspectMode": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.node.inspectMode%"
+                                "description": "%vscode-containers.tasks.docker-run.node.inspectMode%"
                             },
                             "inspectPort": {
                                 "type": "integer",
-                                "description": "%vscode-docker.tasks.docker-run.node.inspectPort%"
+                                "description": "%vscode-containers.tasks.docker-run.node.inspectPort%"
                             },
                             "package": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.node.package%"
+                                "description": "%vscode-containers.tasks.docker-run.node.package%"
                             }
                         }
                     },
                     "python": {
                         "type": "object",
                         "additionalProperties": false,
-                        "description": "%vscode-docker.tasks.docker-run.python.description%",
+                        "description": "%vscode-containers.tasks.docker-run.python.description%",
                         "properties": {
                             "file": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.python.file%",
+                                "description": "%vscode-containers.tasks.docker-run.python.file%",
                                 "default": "${file}"
                             },
                             "module": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-run.python.module%"
+                                "description": "%vscode-containers.tasks.docker-run.python.module%"
                             },
                             "args": {
                                 "type": "array",
-                                "description": "%vscode-docker.tasks.docker-run.python.args%",
+                                "description": "%vscode-containers.tasks.docker-run.python.args%",
                                 "items": {
                                     "type": "string"
                                 }
                             },
                             "wait": {
                                 "type": "boolean",
-                                "description": "%vscode-docker.tasks.docker-run.python.wait%",
+                                "description": "%vscode-containers.tasks.docker-run.python.wait%",
                                 "default": true
                             },
                             "debugPort": {
                                 "type": "number",
-                                "description": "%vscode-docker.tasks.docker-run.python.debugPort%",
+                                "description": "%vscode-containers.tasks.docker-run.python.debugPort%",
                                 "default": 5678
                             }
                         },
@@ -1326,15 +1327,15 @@
                         ]
                     },
                     "options": {
-                        "description": "%vscode-docker.tasks.options.description%",
+                        "description": "%vscode-containers.tasks.options.description%",
                         "properties": {
                             "cwd": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.options.cwd.description%"
+                                "description": "%vscode-containers.tasks.options.cwd.description%"
                             },
                             "env": {
                                 "type": "object",
-                                "description": "%vscode-docker.tasks.options.env.description%",
+                                "description": "%vscode-containers.tasks.options.env.description%",
                                 "additionalProperties": {
                                     "type": "string"
                                 }
@@ -1347,45 +1348,45 @@
                 "type": "docker-compose",
                 "properties": {
                     "dockerCompose": {
-                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.description%",
+                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.description%",
                         "properties": {
                             "up": {
-                                "description": "%vscode-docker.tasks.docker-compose.dockerCompose.up.description%",
+                                "description": "%vscode-containers.tasks.docker-compose.dockerCompose.up.description%",
                                 "properties": {
                                     "detached": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.up.detached%",
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.up.detached%",
                                         "default": true
                                     },
                                     "build": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.up.build%",
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.up.build%",
                                         "default": true
                                     },
                                     "scale": {
                                         "type": "object",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.up.scale%",
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.up.scale%",
                                         "additionalProperties": {
                                             "type": "number"
                                         }
                                     },
                                     "services": {
                                         "type": "array",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.up.services%",
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.up.services%",
                                         "items": {
                                             "type": "string"
                                         }
                                     },
                                     "profiles": {
                                         "type": "array",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.up.profiles%",
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.up.profiles%",
                                         "items": {
                                             "type": "string"
                                         }
                                     },
                                     "customOptions": {
                                         "type": "string",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.up.customOptions%"
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.up.customOptions%"
                                     }
                                 },
                                 "not": {
@@ -1396,11 +1397,11 @@
                                 }
                             },
                             "down": {
-                                "description": "%vscode-docker.tasks.docker-compose.dockerCompose.down.description%",
+                                "description": "%vscode-containers.tasks.docker-compose.dockerCompose.down.description%",
                                 "properties": {
                                     "removeImages": {
                                         "type": "string",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.down.removeImages%",
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.down.removeImages%",
                                         "enum": [
                                             "all",
                                             "local"
@@ -1408,36 +1409,36 @@
                                     },
                                     "removeVolumes": {
                                         "type": "boolean",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.down.removeVolumes%",
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.down.removeVolumes%",
                                         "default": false
                                     },
                                     "customOptions": {
                                         "type": "string",
-                                        "description": "%vscode-docker.tasks.docker-compose.dockerCompose.down.customOptions%"
+                                        "description": "%vscode-containers.tasks.docker-compose.dockerCompose.down.customOptions%"
                                     }
                                 }
                             },
                             "envFiles": {
                                 "type": "array",
-                                "description": "%vscode-docker.tasks.docker-compose.dockerCompose.envFiles.description%",
+                                "description": "%vscode-containers.tasks.docker-compose.dockerCompose.envFiles.description%",
                                 "items": {
                                     "type": "string"
                                 }
                             },
                             "envFile": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-compose.dockerCompose.envFile.description%"
+                                "description": "%vscode-containers.tasks.docker-compose.dockerCompose.envFile.description%"
                             },
                             "files": {
                                 "type": "array",
-                                "description": "%vscode-docker.tasks.docker-compose.dockerCompose.files.description%",
+                                "description": "%vscode-containers.tasks.docker-compose.dockerCompose.files.description%",
                                 "items": {
                                     "type": "string"
                                 }
                             },
                             "projectName": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.docker-compose.dockerCompose.projectName.description%"
+                                "description": "%vscode-containers.tasks.docker-compose.dockerCompose.projectName.description%"
                             }
                         },
                         "oneOf": [
@@ -1463,15 +1464,15 @@
                         }
                     },
                     "options": {
-                        "description": "%vscode-docker.tasks.options.description%",
+                        "description": "%vscode-containers.tasks.options.description%",
                         "properties": {
                             "cwd": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.options.cwd.description%"
+                                "description": "%vscode-containers.tasks.options.cwd.description%"
                             },
                             "env": {
                                 "type": "object",
-                                "description": "%vscode-docker.tasks.options.env.description%",
+                                "description": "%vscode-containers.tasks.options.env.description%",
                                 "additionalProperties": {
                                     "type": "string"
                                 }
@@ -1487,11 +1488,11 @@
                 "type": "dotnet-container-sdk",
                 "properties": {
                     "netCore": {
-                        "description": "%vscode-docker.debug.netCore.description%",
+                        "description": "%vscode-containers.debug.netCore.description%",
                         "properties": {
                             "appProject": {
                                 "type": "string",
-                                "description": "%vscode-docker.debug.netCore.appProject%"
+                                "description": "%vscode-containers.debug.netCore.appProject%"
                             }
                         },
                         "required": [
@@ -1499,11 +1500,11 @@
                         ]
                     },
                     "dockerRun": {
-                        "description": "%vscode-docker.tasks.dotnet-container-sdk.dockerRun.description%",
+                        "description": "%vscode-containers.tasks.dotnet-container-sdk.dockerRun.description%",
                         "properties": {
                             "containerName": {
                                 "type": "string",
-                                "description": "%vscode-docker.tasks.dotnet-container-sdk.dockerRun.containerName%"
+                                "description": "%vscode-containers.tasks.dotnet-container-sdk.dockerRun.containerName%"
                             }
                         },
                         "required": [
@@ -1553,7 +1554,7 @@
                 "docker.promptForRegistryWhenPushingImages": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%vscode-docker.config.docker.promptForRegistryWhenPushingImages%"
+                    "description": "%vscode-containers.config.docker.promptForRegistryWhenPushingImages%"
                 },
                 "docker.commands.build": {
                     "oneOf": [
@@ -1563,15 +1564,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.build.template%"
+                                        "description": "%vscode-containers.config.template.build.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.build.label%"
+                                        "description": "%vscode-containers.config.template.build.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.build.match%"
+                                        "description": "%vscode-containers.config.template.build.match%"
                                     }
                                 },
                                 "required": [
@@ -1585,7 +1586,7 @@
                         }
                     ],
                     "default": "${containerCommand} build --pull --rm -f \"${dockerfile}\" -t ${tag} \"${context}\"",
-                    "description": "%vscode-docker.config.template.build.description%"
+                    "description": "%vscode-containers.config.template.build.description%"
                 },
                 "docker.commands.run": {
                     "oneOf": [
@@ -1595,15 +1596,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.run.template%"
+                                        "description": "%vscode-containers.config.template.run.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.run.label%"
+                                        "description": "%vscode-containers.config.template.run.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.run.match%"
+                                        "description": "%vscode-containers.config.template.run.match%"
                                     }
                                 },
                                 "required": [
@@ -1617,7 +1618,7 @@
                         }
                     ],
                     "default": "${containerCommand} run --rm -d ${exposedPorts} ${tag}",
-                    "description": "%vscode-docker.config.template.run.description%"
+                    "description": "%vscode-containers.config.template.run.description%"
                 },
                 "docker.commands.runInteractive": {
                     "oneOf": [
@@ -1627,15 +1628,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.runInteractive.template%"
+                                        "description": "%vscode-containers.config.template.runInteractive.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.runInteractive.label%"
+                                        "description": "%vscode-containers.config.template.runInteractive.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.runInteractive.match%"
+                                        "description": "%vscode-containers.config.template.runInteractive.match%"
                                     }
                                 },
                                 "required": [
@@ -1649,7 +1650,7 @@
                         }
                     ],
                     "default": "${containerCommand} run --rm -it ${exposedPorts} ${tag}",
-                    "description": "%vscode-docker.config.template.runInteractive.description%"
+                    "description": "%vscode-containers.config.template.runInteractive.description%"
                 },
                 "docker.commands.attach": {
                     "oneOf": [
@@ -1659,15 +1660,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.attach.template%"
+                                        "description": "%vscode-containers.config.template.attach.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.attach.label%"
+                                        "description": "%vscode-containers.config.template.attach.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.attach.match%"
+                                        "description": "%vscode-containers.config.template.attach.match%"
                                     }
                                 },
                                 "required": [
@@ -1681,7 +1682,7 @@
                         }
                     ],
                     "default": "${containerCommand} exec -it ${containerId} ${shellCommand}",
-                    "description": "%vscode-docker.config.template.attach.description%"
+                    "description": "%vscode-containers.config.template.attach.description%"
                 },
                 "docker.commands.logs": {
                     "oneOf": [
@@ -1691,15 +1692,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.logs.template%"
+                                        "description": "%vscode-containers.config.template.logs.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.logs.label%"
+                                        "description": "%vscode-containers.config.template.logs.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.logs.match%"
+                                        "description": "%vscode-containers.config.template.logs.match%"
                                     }
                                 },
                                 "required": [
@@ -1713,7 +1714,7 @@
                         }
                     ],
                     "default": "${containerCommand} logs --tail 1000 -f ${containerId}",
-                    "description": "%vscode-docker.config.template.logs.description%"
+                    "description": "%vscode-containers.config.template.logs.description%"
                 },
                 "docker.commands.composeUp": {
                     "oneOf": [
@@ -1723,15 +1724,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeUp.template%"
+                                        "description": "%vscode-containers.config.template.composeUp.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeUp.label%"
+                                        "description": "%vscode-containers.config.template.composeUp.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeUp.match%"
+                                        "description": "%vscode-containers.config.template.composeUp.match%"
                                     }
                                 },
                                 "required": [
@@ -1750,7 +1751,7 @@
                             "template": "${composeCommand} ${configurationFile} up ${detached} ${build}"
                         }
                     ],
-                    "description": "%vscode-docker.config.template.composeUp.description%"
+                    "description": "%vscode-containers.config.template.composeUp.description%"
                 },
                 "docker.commands.composeUpSubset": {
                     "oneOf": [
@@ -1760,15 +1761,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeUpSubset.template%"
+                                        "description": "%vscode-containers.config.template.composeUpSubset.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeUpSubset.label%"
+                                        "description": "%vscode-containers.config.template.composeUpSubset.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeUpSubset.match%"
+                                        "description": "%vscode-containers.config.template.composeUpSubset.match%"
                                     }
                                 },
                                 "required": [
@@ -1787,7 +1788,7 @@
                             "template": "${composeCommand} ${profileList} ${configurationFile} up ${detached} ${build} ${serviceList}"
                         }
                     ],
-                    "description": "%vscode-docker.config.template.composeUpSubset.description%"
+                    "description": "%vscode-containers.config.template.composeUpSubset.description%"
                 },
                 "docker.commands.composeDown": {
                     "oneOf": [
@@ -1797,15 +1798,15 @@
                                 "properties": {
                                     "template": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeDown.template%"
+                                        "description": "%vscode-containers.config.template.composeDown.template%"
                                     },
                                     "label": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeDown.label%"
+                                        "description": "%vscode-containers.config.template.composeDown.label%"
                                     },
                                     "match": {
                                         "type": "string",
-                                        "description": "%vscode-docker.config.template.composeDown.match%"
+                                        "description": "%vscode-containers.config.template.composeDown.match%"
                                     }
                                 },
                                 "required": [
@@ -1824,12 +1825,12 @@
                             "template": "${composeCommand} ${configurationFile} down"
                         }
                     ],
-                    "description": "%vscode-docker.config.template.composeDown.description%"
+                    "description": "%vscode-containers.config.template.composeDown.description%"
                 },
                 "docker.containers.groupBy": {
                     "type": "string",
                     "default": "Compose Project Name",
-                    "description": "%vscode-docker.config.docker.containers.groupBy%",
+                    "description": "%vscode-containers.config.docker.containers.groupBy%",
                     "enum": [
                         "Compose Project Name",
                         "ContainerId",
@@ -1854,7 +1855,7 @@
                 },
                 "docker.containers.groupByLabel": {
                     "type": "string",
-                    "description": "%vscode-docker.config.docker.containers.groupByLabel%"
+                    "description": "%vscode-containers.config.docker.containers.groupByLabel%"
                 },
                 "docker.containers.description": {
                     "type": "array",
@@ -1862,7 +1863,7 @@
                         "ContainerName",
                         "Status"
                     ],
-                    "description": "%vscode-docker.config.docker.containers.description%",
+                    "description": "%vscode-containers.config.docker.containers.description%",
                     "items": {
                         "type": "string",
                         "enum": [
@@ -1889,7 +1890,7 @@
                 "docker.containers.label": {
                     "type": "string",
                     "default": "FullTag",
-                    "description": "%vscode-docker.config.docker.containers.label%",
+                    "description": "%vscode-containers.config.docker.containers.label%",
                     "enum": [
                         "Compose Project Name",
                         "ContainerId",
@@ -1913,7 +1914,7 @@
                 "docker.containers.sortBy": {
                     "type": "string",
                     "default": "CreatedTime",
-                    "description": "%vscode-docker.config.docker.containers.sortBy%",
+                    "description": "%vscode-containers.config.docker.containers.sortBy%",
                     "enum": [
                         "CreatedTime",
                         "Label"
@@ -1924,7 +1925,7 @@
                     "default": [
                         "Description"
                     ],
-                    "description": "%vscode-docker.config.docker.contexts.description%",
+                    "description": "%vscode-containers.config.docker.contexts.description%",
                     "items": {
                         "type": "string",
                         "enum": [
@@ -1937,7 +1938,7 @@
                 "docker.contexts.label": {
                     "type": "string",
                     "default": "Name",
-                    "description": "%vscode-docker.config.docker.contexts.label%",
+                    "description": "%vscode-containers.config.docker.contexts.label%",
                     "enum": [
                         "Name",
                         "Description",
@@ -1947,12 +1948,12 @@
                 "docker.contexts.showInStatusBar": {
                     "type": "boolean",
                     "default": false,
-                    "description": "%vscode-docker.config.docker.contexts.showInStatusBar%"
+                    "description": "%vscode-containers.config.docker.contexts.showInStatusBar%"
                 },
                 "docker.images.groupBy": {
                     "type": "string",
                     "default": "Repository",
-                    "description": "%vscode-docker.config.docker.images.groupBy%",
+                    "description": "%vscode-containers.config.docker.images.groupBy%",
                     "enum": [
                         "CreatedTime",
                         "FullTag",
@@ -1972,7 +1973,7 @@
                     "default": [
                         "CreatedTime"
                     ],
-                    "description": "%vscode-docker.config.docker.images.description%",
+                    "description": "%vscode-containers.config.docker.images.description%",
                     "items": {
                         "type": "string",
                         "enum": [
@@ -1993,7 +1994,7 @@
                 "docker.images.label": {
                     "type": "string",
                     "default": "Tag",
-                    "description": "%vscode-docker.config.docker.images.label%",
+                    "description": "%vscode-containers.config.docker.images.label%",
                     "enum": [
                         "CreatedTime",
                         "FullTag",
@@ -2011,7 +2012,7 @@
                 "docker.images.sortBy": {
                     "type": "string",
                     "default": "CreatedTime",
-                    "description": "%vscode-docker.config.docker.images.sortBy%",
+                    "description": "%vscode-containers.config.docker.images.sortBy%",
                     "enum": [
                         "CreatedTime",
                         "Label",
@@ -2021,12 +2022,12 @@
                 "docker.images.checkForOutdatedImages": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%vscode-docker.config.docker.images.checkForOutdatedImages%"
+                    "description": "%vscode-containers.config.docker.images.checkForOutdatedImages%"
                 },
                 "docker.networks.groupBy": {
                     "type": "string",
                     "default": "None",
-                    "description": "%vscode-docker.config.docker.networks.groupBy%",
+                    "description": "%vscode-containers.config.docker.networks.groupBy%",
                     "enum": [
                         "CreatedTime",
                         "NetworkDriver",
@@ -2041,7 +2042,7 @@
                         "NetworkDriver",
                         "CreatedTime"
                     ],
-                    "description": "%vscode-docker.config.docker.networks.description%",
+                    "description": "%vscode-containers.config.docker.networks.description%",
                     "items": {
                         "type": "string",
                         "enum": [
@@ -2055,12 +2056,12 @@
                 "docker.networks.showBuiltInNetworks": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%vscode-docker.config.docker.networks.showBuiltIn%"
+                    "description": "%vscode-containers.config.docker.networks.showBuiltIn%"
                 },
                 "docker.networks.label": {
                     "type": "string",
                     "default": "NetworkName",
-                    "description": "%vscode-docker.config.docker.networks.label%",
+                    "description": "%vscode-containers.config.docker.networks.label%",
                     "enum": [
                         "CreatedTime",
                         "NetworkDriver",
@@ -2071,7 +2072,7 @@
                 "docker.networks.sortBy": {
                     "type": "string",
                     "default": "CreatedTime",
-                    "description": "%vscode-docker.config.docker.networks.sortBy%",
+                    "description": "%vscode-containers.config.docker.networks.sortBy%",
                     "enum": [
                         "CreatedTime",
                         "Label"
@@ -2080,7 +2081,7 @@
                 "docker.volumes.groupBy": {
                     "type": "string",
                     "default": "None",
-                    "description": "%vscode-docker.config.docker.volumes.groupBy%",
+                    "description": "%vscode-containers.config.docker.volumes.groupBy%",
                     "enum": [
                         "CreatedTime",
                         "VolumeName",
@@ -2092,7 +2093,7 @@
                     "default": [
                         "CreatedTime"
                     ],
-                    "description": "%vscode-docker.config.docker.volumes.description%",
+                    "description": "%vscode-containers.config.docker.volumes.description%",
                     "items": {
                         "type": "string",
                         "enum": [
@@ -2104,7 +2105,7 @@
                 "docker.volumes.label": {
                     "type": "string",
                     "default": "VolumeName",
-                    "description": "%vscode-docker.config.docker.volumes.label%",
+                    "description": "%vscode-containers.config.docker.volumes.label%",
                     "enum": [
                         "CreatedTime",
                         "VolumeName"
@@ -2113,7 +2114,7 @@
                 "docker.volumes.sortBy": {
                     "type": "string",
                     "default": "CreatedTime",
-                    "description": "%vscode-docker.config.docker.volumes.sortBy%",
+                    "description": "%vscode-containers.config.docker.volumes.sortBy%",
                     "enum": [
                         "CreatedTime",
                         "Label"
@@ -2122,25 +2123,25 @@
                 "docker.imageBuildContextPath": {
                     "type": "string",
                     "default": "",
-                    "description": "%vscode-docker.config.docker.imageBuildContextPath%",
+                    "description": "%vscode-containers.config.docker.imageBuildContextPath%",
                     "scope": "machine-overridable"
                 },
                 "docker.truncateLongRegistryPaths": {
                     "type": "boolean",
                     "default": false,
-                    "description": "%vscode-docker.config.docker.truncateLongRegistryPaths%"
+                    "description": "%vscode-containers.config.docker.truncateLongRegistryPaths%"
                 },
                 "docker.truncateMaxLength": {
                     "type": "number",
                     "default": 10,
-                    "description": "%vscode-docker.config.docker.truncateMaxLength%"
+                    "description": "%vscode-containers.config.docker.truncateMaxLength%"
                 },
                 "docker.environment": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "%vscode-docker.config.docker.environment%",
+                    "description": "%vscode-containers.config.docker.environment%",
                     "scope": "machine-overridable"
                 },
                 "docker.languageserver.diagnostics.deprecatedMaintainer": {
@@ -2152,7 +2153,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.deprecatedMaintainer%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.deprecatedMaintainer%"
                 },
                 "docker.languageserver.diagnostics.emptyContinuationLine": {
                     "scope": "resource",
@@ -2163,7 +2164,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.emptyContinuationLine%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.emptyContinuationLine%"
                 },
                 "docker.languageserver.diagnostics.directiveCasing": {
                     "scope": "resource",
@@ -2174,7 +2175,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.directiveCasing%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.directiveCasing%"
                 },
                 "docker.languageserver.diagnostics.instructionCasing": {
                     "scope": "resource",
@@ -2185,7 +2186,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.instructionCasing%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.instructionCasing%"
                 },
                 "docker.languageserver.diagnostics.instructionCmdMultiple": {
                     "scope": "resource",
@@ -2196,7 +2197,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.instructionCmdMultiple%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.instructionCmdMultiple%"
                 },
                 "docker.languageserver.diagnostics.instructionEntrypointMultiple": {
                     "scope": "resource",
@@ -2207,7 +2208,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.instructionEntrypointMultiple%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.instructionEntrypointMultiple%"
                 },
                 "docker.languageserver.diagnostics.instructionHealthcheckMultiple": {
                     "scope": "resource",
@@ -2218,7 +2219,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.instructionHealthcheckMultiple%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.instructionHealthcheckMultiple%"
                 },
                 "docker.languageserver.diagnostics.instructionJSONInSingleQuotes": {
                     "scope": "resource",
@@ -2229,7 +2230,7 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.instructionJsonInSingleQuotes%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.instructionJsonInSingleQuotes%"
                 },
                 "docker.languageserver.diagnostics.instructionWorkdirRelative": {
                     "scope": "resource",
@@ -2240,569 +2241,569 @@
                         "warning",
                         "error"
                     ],
-                    "description": "%vscode-docker.config.docker.languageserver.diagnostics.instructionWorkdirRelative%"
+                    "description": "%vscode-containers.config.docker.languageserver.diagnostics.instructionWorkdirRelative%"
                 },
                 "docker.languageserver.formatter.ignoreMultilineInstructions": {
                     "scope": "resource",
                     "type": "boolean",
                     "default": false,
-                    "description": "%vscode-docker.config.docker.languageserver.formatter.ignoreMultilineInstructions%"
+                    "description": "%vscode-containers.config.docker.languageserver.formatter.ignoreMultilineInstructions%"
                 },
                 "docker.dockerComposeBuild": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%vscode-docker.config.docker.dockerComposeBuild%"
+                    "description": "%vscode-containers.config.docker.dockerComposeBuild%"
                 },
                 "docker.dockerComposeDetached": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%vscode-docker.config.docker.dockerComposeDetached%"
+                    "description": "%vscode-containers.config.docker.dockerComposeDetached%"
                 },
                 "docker.showRemoteWorkspaceWarning": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%vscode-docker.config.docker.showRemoteWorkspaceWarning%"
+                    "description": "%vscode-containers.config.docker.showRemoteWorkspaceWarning%"
                 },
                 "docker.scaffolding.templatePath": {
                     "type": "string",
-                    "description": "%vscode-docker.config.docker.scaffolding.templatePath%"
+                    "description": "%vscode-containers.config.docker.scaffolding.templatePath%"
                 },
                 "docker.dockerPath": {
                     "type": "string",
-                    "description": "%vscode-docker.config.docker.dockerPath%",
+                    "description": "%vscode-containers.config.docker.dockerPath%",
                     "scope": "machine-overridable"
                 },
                 "docker.composeCommand": {
                     "type": "string",
-                    "description": "%vscode-docker.config.docker.composeCommand%",
+                    "description": "%vscode-containers.config.docker.composeCommand%",
                     "scope": "machine-overridable"
                 },
                 "docker.enableDockerComposeLanguageService": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%vscode-docker.config.docker.enableDockerComposeLanguageService%"
+                    "description": "%vscode-containers.config.docker.enableDockerComposeLanguageService%"
                 }
             }
         },
         "commands": [
             {
-                "command": "vscode-docker.compose.down",
-                "title": "%vscode-docker.commands.compose.down%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.compose.down",
+                "title": "%vscode-containers.commands.compose.down%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.compose.restart",
-                "title": "%vscode-docker.commands.compose.restart%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.compose.restart",
+                "title": "%vscode-containers.commands.compose.restart%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.compose.up",
-                "title": "%vscode-docker.commands.compose.up%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.compose.up",
+                "title": "%vscode-containers.commands.compose.up%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.compose.up.subset",
-                "title": "%vscode-docker.commands.compose.up.subset%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.compose.up.subset",
+                "title": "%vscode-containers.commands.compose.up.subset%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.configure",
-                "title": "%vscode-docker.commands.configure%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.configure",
+                "title": "%vscode-containers.commands.configure%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.configureCompose",
-                "title": "%vscode-docker.commands.configureCompose%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.configureCompose",
+                "title": "%vscode-containers.commands.configureCompose%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.openDockerDownloadPage",
-                "title": "%vscode-docker.commands.openDockerDownloadPage%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.openDockerDownloadPage",
+                "title": "%vscode-containers.commands.openDockerDownloadPage%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.containers.attachShell",
-                "title": "%vscode-docker.commands.containers.attachShell%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.attachShell",
+                "title": "%vscode-containers.commands.containers.attachShell%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.browse",
-                "title": "%vscode-docker.commands.containers.browse%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.browse",
+                "title": "%vscode-containers.commands.containers.browse%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.configureExplorer",
-                "title": "%vscode-docker.commands.containers.configureExplorer%",
-                "category": "%vscode-docker.commands.category.dockerContainers%",
+                "command": "vscode-containers.containers.configureExplorer",
+                "title": "%vscode-containers.commands.containers.configureExplorer%",
+                "category": "%vscode-containers.commands.category.dockerContainers%",
                 "icon": "$(settings-gear)"
             },
             {
-                "command": "vscode-docker.containers.downloadFile",
-                "title": "%vscode-docker.commands.containers.downloadFile%",
-                "category": "%vscode-docker.commands.category.dockerContainers%",
+                "command": "vscode-containers.containers.downloadFile",
+                "title": "%vscode-containers.commands.containers.downloadFile%",
+                "category": "%vscode-containers.commands.category.dockerContainers%",
                 "icon": "$(desktop-download)"
             },
             {
-                "command": "vscode-docker.containers.inspect",
-                "title": "%vscode-docker.commands.containers.inspect%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.inspect",
+                "title": "%vscode-containers.commands.containers.inspect%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.openFile",
-                "title": "%vscode-docker.commands.containers.openFile%",
-                "category": "%vscode-docker.commands.category.dockerContainers%",
+                "command": "vscode-containers.containers.openFile",
+                "title": "%vscode-containers.commands.containers.openFile%",
+                "category": "%vscode-containers.commands.category.dockerContainers%",
                 "icon": "$(go-to-file)"
             },
             {
-                "command": "vscode-docker.containers.prune",
-                "title": "%vscode-docker.commands.containers.prune%",
-                "category": "%vscode-docker.commands.category.dockerContainers%",
+                "command": "vscode-containers.containers.prune",
+                "title": "%vscode-containers.commands.containers.prune%",
+                "category": "%vscode-containers.commands.category.dockerContainers%",
                 "icon": "$(clear-all)"
             },
             {
-                "command": "vscode-docker.containers.refresh",
-                "title": "%vscode-docker.commands.containers.refresh%",
-                "category": "%vscode-docker.commands.category.dockerContainers%",
+                "command": "vscode-containers.containers.refresh",
+                "title": "%vscode-containers.commands.containers.refresh%",
+                "category": "%vscode-containers.commands.category.dockerContainers%",
                 "icon": "$(refresh)"
             },
             {
-                "command": "vscode-docker.containers.remove",
-                "title": "%vscode-docker.commands.containers.remove%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.remove",
+                "title": "%vscode-containers.commands.containers.remove%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.group.remove",
-                "title": "%vscode-docker.commands.containers.group.remove%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.group.remove",
+                "title": "%vscode-containers.commands.containers.group.remove%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.restart",
-                "title": "%vscode-docker.commands.containers.restart%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.restart",
+                "title": "%vscode-containers.commands.containers.restart%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.select",
-                "title": "%vscode-docker.commands.containers.select%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.select",
+                "title": "%vscode-containers.commands.containers.select%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.start",
-                "title": "%vscode-docker.commands.containers.start%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.start",
+                "title": "%vscode-containers.commands.containers.start%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.stop",
-                "title": "%vscode-docker.commands.containers.stop%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.stop",
+                "title": "%vscode-containers.commands.containers.stop%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.stats",
-                "title": "%vscode-docker.commands.containers.stats%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.containers.stats",
+                "title": "%vscode-containers.commands.containers.stats%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.containers.viewLogs",
-                "title": "%vscode-docker.commands.containers.viewLogs%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.viewLogs",
+                "title": "%vscode-containers.commands.containers.viewLogs%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.composeGroup.logs",
-                "title": "%vscode-docker.commands.containers.composeGroup.logs%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.composeGroup.logs",
+                "title": "%vscode-containers.commands.containers.composeGroup.logs%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.composeGroup.start",
-                "title": "%vscode-docker.commands.containers.composeGroup.start%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.composeGroup.start",
+                "title": "%vscode-containers.commands.containers.composeGroup.start%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.composeGroup.stop",
-                "title": "%vscode-docker.commands.containers.composeGroup.stop%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.composeGroup.stop",
+                "title": "%vscode-containers.commands.containers.composeGroup.stop%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.composeGroup.restart",
-                "title": "%vscode-docker.commands.containers.composeGroup.restart%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.composeGroup.restart",
+                "title": "%vscode-containers.commands.containers.composeGroup.restart%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.containers.composeGroup.down",
-                "title": "%vscode-docker.commands.containers.composeGroup.down%",
-                "category": "%vscode-docker.commands.category.dockerContainers%"
+                "command": "vscode-containers.containers.composeGroup.down",
+                "title": "%vscode-containers.commands.containers.composeGroup.down%",
+                "category": "%vscode-containers.commands.category.dockerContainers%"
             },
             {
-                "command": "vscode-docker.debugging.initializeForDebugging",
-                "title": "%vscode-docker.commands.debugging.initializeForDebugging%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.debugging.initializeForDebugging",
+                "title": "%vscode-containers.commands.debugging.initializeForDebugging%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.images.build",
-                "title": "%vscode-docker.commands.images.build%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.build",
+                "title": "%vscode-containers.commands.images.build%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.configureExplorer",
-                "title": "%vscode-docker.commands.images.configureExplorer%",
-                "category": "%vscode-docker.commands.category.dockerImages%",
+                "command": "vscode-containers.images.configureExplorer",
+                "title": "%vscode-containers.commands.images.configureExplorer%",
+                "category": "%vscode-containers.commands.category.dockerImages%",
                 "icon": "$(settings-gear)"
             },
             {
-                "command": "vscode-docker.images.inspect",
-                "title": "%vscode-docker.commands.images.inspect%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.inspect",
+                "title": "%vscode-containers.commands.images.inspect%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.prune",
-                "title": "%vscode-docker.commands.images.prune%",
-                "category": "%vscode-docker.commands.category.dockerImages%",
+                "command": "vscode-containers.images.prune",
+                "title": "%vscode-containers.commands.images.prune%",
+                "category": "%vscode-containers.commands.category.dockerImages%",
                 "icon": "$(clear-all)"
             },
             {
-                "command": "vscode-docker.images.showDangling",
-                "title": "%vscode-docker.commands.images.showDangling%",
-                "category": "%vscode-docker.commands.category.dockerImages%",
+                "command": "vscode-containers.images.showDangling",
+                "title": "%vscode-containers.commands.images.showDangling%",
+                "category": "%vscode-containers.commands.category.dockerImages%",
                 "icon": "$(eye)"
             },
             {
-                "command": "vscode-docker.images.hideDangling",
-                "title": "%vscode-docker.commands.images.hideDangling%",
-                "category": "%vscode-docker.commands.category.dockerImages%",
+                "command": "vscode-containers.images.hideDangling",
+                "title": "%vscode-containers.commands.images.hideDangling%",
+                "category": "%vscode-containers.commands.category.dockerImages%",
                 "icon": "$(eye-closed)"
             },
             {
-                "command": "vscode-docker.images.pull",
-                "title": "%vscode-docker.commands.images.pull%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.pull",
+                "title": "%vscode-containers.commands.images.pull%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.push",
-                "title": "%vscode-docker.commands.images.push%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.push",
+                "title": "%vscode-containers.commands.images.push%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.refresh",
-                "title": "%vscode-docker.commands.images.refresh%",
-                "category": "%vscode-docker.commands.category.dockerImages%",
+                "command": "vscode-containers.images.refresh",
+                "title": "%vscode-containers.commands.images.refresh%",
+                "category": "%vscode-containers.commands.category.dockerImages%",
                 "icon": "$(refresh)"
             },
             {
-                "command": "vscode-docker.images.remove",
-                "title": "%vscode-docker.commands.images.remove%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.remove",
+                "title": "%vscode-containers.commands.images.remove%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.group.remove",
-                "title": "%vscode-docker.commands.images.group.remove%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.group.remove",
+                "title": "%vscode-containers.commands.images.group.remove%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.run",
-                "title": "%vscode-docker.commands.images.run%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.run",
+                "title": "%vscode-containers.commands.images.run%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.runAzureCli",
-                "title": "%vscode-docker.commands.images.runAzureCli%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.runAzureCli",
+                "title": "%vscode-containers.commands.images.runAzureCli%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.runInteractive",
-                "title": "%vscode-docker.commands.images.runInteractive%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.runInteractive",
+                "title": "%vscode-containers.commands.images.runInteractive%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.tag",
-                "title": "%vscode-docker.commands.images.tag%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.tag",
+                "title": "%vscode-containers.commands.images.tag%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.images.copyFullTag",
-                "title": "%vscode-docker.commands.images.copyFullTag%",
-                "category": "%vscode-docker.commands.category.dockerImages%"
+                "command": "vscode-containers.images.copyFullTag",
+                "title": "%vscode-containers.commands.images.copyFullTag%",
+                "category": "%vscode-containers.commands.category.dockerImages%"
             },
             {
-                "command": "vscode-docker.networks.configureExplorer",
-                "title": "%vscode-docker.commands.networks.configureExplorer%",
-                "category": "%vscode-docker.commands.category.dockerNetworks%",
+                "command": "vscode-containers.networks.configureExplorer",
+                "title": "%vscode-containers.commands.networks.configureExplorer%",
+                "category": "%vscode-containers.commands.category.dockerNetworks%",
                 "icon": "$(settings-gear)"
             },
             {
-                "command": "vscode-docker.networks.create",
-                "title": "%vscode-docker.commands.networks.create%",
-                "category": "%vscode-docker.commands.category.dockerNetworks%",
+                "command": "vscode-containers.networks.create",
+                "title": "%vscode-containers.commands.networks.create%",
+                "category": "%vscode-containers.commands.category.dockerNetworks%",
                 "icon": "$(add)"
             },
             {
-                "command": "vscode-docker.networks.inspect",
-                "title": "%vscode-docker.commands.networks.inspect%",
-                "category": "%vscode-docker.commands.category.dockerNetworks%"
+                "command": "vscode-containers.networks.inspect",
+                "title": "%vscode-containers.commands.networks.inspect%",
+                "category": "%vscode-containers.commands.category.dockerNetworks%"
             },
             {
-                "command": "vscode-docker.networks.prune",
-                "title": "%vscode-docker.commands.networks.prune%",
-                "category": "%vscode-docker.commands.category.dockerNetworks%",
+                "command": "vscode-containers.networks.prune",
+                "title": "%vscode-containers.commands.networks.prune%",
+                "category": "%vscode-containers.commands.category.dockerNetworks%",
                 "icon": "$(clear-all)"
             },
             {
-                "command": "vscode-docker.networks.refresh",
-                "title": "%vscode-docker.commands.networks.refresh%",
-                "category": "%vscode-docker.commands.category.dockerNetworks%",
+                "command": "vscode-containers.networks.refresh",
+                "title": "%vscode-containers.commands.networks.refresh%",
+                "category": "%vscode-containers.commands.category.dockerNetworks%",
                 "icon": "$(refresh)"
             },
             {
-                "command": "vscode-docker.networks.remove",
-                "title": "%vscode-docker.commands.networks.remove%",
-                "category": "%vscode-docker.commands.category.dockerNetworks%"
+                "command": "vscode-containers.networks.remove",
+                "title": "%vscode-containers.commands.networks.remove%",
+                "category": "%vscode-containers.commands.category.dockerNetworks%"
             },
             {
-                "command": "vscode-docker.pruneSystem",
-                "title": "%vscode-docker.commands.pruneSystem%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.pruneSystem",
+                "title": "%vscode-containers.commands.pruneSystem%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.registries.azure.buildImage",
-                "title": "%vscode-docker.commands.registries.azure.buildImage%",
-                "category": "%vscode-docker.commands.category.azureContainerRegistry%"
+                "command": "vscode-containers.registries.azure.buildImage",
+                "title": "%vscode-containers.commands.registries.azure.buildImage%",
+                "category": "%vscode-containers.commands.category.azureContainerRegistry%"
             },
             {
-                "command": "vscode-docker.registries.azure.createRegistry",
-                "title": "%vscode-docker.commands.registries.azure.createRegistry%",
-                "category": "%vscode-docker.commands.category.azureContainerRegistry%"
+                "command": "vscode-containers.registries.azure.createRegistry",
+                "title": "%vscode-containers.commands.registries.azure.createRegistry%",
+                "category": "%vscode-containers.commands.category.azureContainerRegistry%"
             },
             {
-                "command": "vscode-docker.registries.azure.deleteRegistry",
-                "title": "%vscode-docker.commands.registries.azure.deleteRegistry%",
-                "category": "%vscode-docker.commands.category.azureContainerRegistry%"
+                "command": "vscode-containers.registries.azure.deleteRegistry",
+                "title": "%vscode-containers.commands.registries.azure.deleteRegistry%",
+                "category": "%vscode-containers.commands.category.azureContainerRegistry%"
             },
             {
-                "command": "vscode-docker.registries.azure.deleteRepository",
-                "title": "%vscode-docker.commands.registries.azure.deleteRepository%",
-                "category": "%vscode-docker.commands.category.azureContainerRegistry%"
+                "command": "vscode-containers.registries.azure.deleteRepository",
+                "title": "%vscode-containers.commands.registries.azure.deleteRepository%",
+                "category": "%vscode-containers.commands.category.azureContainerRegistry%"
             },
             {
-                "command": "vscode-docker.registries.azure.openInPortal",
-                "title": "%vscode-docker.commands.registries.azure.openInPortal%",
-                "category": "%vscode-docker.commands.category.azureContainerRegistry%"
+                "command": "vscode-containers.registries.azure.openInPortal",
+                "title": "%vscode-containers.commands.registries.azure.openInPortal%",
+                "category": "%vscode-containers.commands.category.azureContainerRegistry%"
             },
             {
-                "command": "vscode-docker.registries.azure.untagImage",
-                "title": "%vscode-docker.commands.registries.azure.untagImage%",
-                "category": "%vscode-docker.commands.category.azureContainerRegistry%"
+                "command": "vscode-containers.registries.azure.untagImage",
+                "title": "%vscode-containers.commands.registries.azure.untagImage%",
+                "category": "%vscode-containers.commands.category.azureContainerRegistry%"
             },
             {
-                "command": "vscode-docker.registries.azure.viewProperties",
-                "title": "%vscode-docker.commands.registries.azure.viewProperties%",
-                "category": "%vscode-docker.commands.category.azureContainerRegistry%"
+                "command": "vscode-containers.registries.azure.viewProperties",
+                "title": "%vscode-containers.commands.registries.azure.viewProperties%",
+                "category": "%vscode-containers.commands.category.azureContainerRegistry%"
             },
             {
-                "command": "vscode-docker.registries.connectRegistry",
-                "title": "%vscode-docker.commands.registries.connect%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%",
+                "command": "vscode-containers.registries.connectRegistry",
+                "title": "%vscode-containers.commands.registries.connect%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%",
                 "icon": "$(plug)"
             },
             {
-                "command": "vscode-docker.registries.copyImageDigest",
-                "title": "%vscode-docker.commands.registries.copyImageDigest%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.copyImageDigest",
+                "title": "%vscode-containers.commands.registries.copyImageDigest%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.inspectRemoteImageManifest",
-                "title": "%vscode-docker.commands.registries.inspectRemoteImageManifest%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.inspectRemoteImageManifest",
+                "title": "%vscode-containers.commands.registries.inspectRemoteImageManifest%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.copyRemoteFullTag",
-                "title": "%vscode-docker.commands.registries.copyRemoteFullTag%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.copyRemoteFullTag",
+                "title": "%vscode-containers.commands.registries.copyRemoteFullTag%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.deleteImage",
-                "title": "%vscode-docker.commands.registries.deleteImage%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.deleteImage",
+                "title": "%vscode-containers.commands.registries.deleteImage%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.deployImageToAzure",
-                "title": "%vscode-docker.commands.registries.deployImageToAzure%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.deployImageToAzure",
+                "title": "%vscode-containers.commands.registries.deployImageToAzure%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.deployImageToAca",
-                "title": "%vscode-docker.commands.registries.deployImageToAca%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.deployImageToAca",
+                "title": "%vscode-containers.commands.registries.deployImageToAca%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.disconnectRegistry",
-                "title": "%vscode-docker.commands.registries.disconnectRegistry%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.disconnectRegistry",
+                "title": "%vscode-containers.commands.registries.disconnectRegistry%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.genericV2.removeTrackedRegistry",
-                "title": "%vscode-docker.commands.registries.genericV2.removeTrackedRegistry%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.genericV2.removeTrackedRegistry",
+                "title": "%vscode-containers.commands.registries.genericV2.removeTrackedRegistry%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.genericV2.addTrackedRegistry",
-                "title": "%vscode-docker.commands.registries.genericV2.addTrackedRegistry%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.genericV2.addTrackedRegistry",
+                "title": "%vscode-containers.commands.registries.genericV2.addTrackedRegistry%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.dockerHub.openInBrowser",
-                "title": "%vscode-docker.commands.registries.dockerHub.openInBrowser%",
-                "category": "%vscode-docker.commands.category.dockerHub%"
+                "command": "vscode-containers.registries.dockerHub.openInBrowser",
+                "title": "%vscode-containers.commands.registries.dockerHub.openInBrowser%",
+                "category": "%vscode-containers.commands.category.dockerHub%"
             },
             {
-                "command": "vscode-docker.registries.help",
-                "title": "%vscode-docker.commands.registries.help%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%",
+                "command": "vscode-containers.registries.help",
+                "title": "%vscode-containers.commands.registries.help%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%",
                 "icon": "$(question)"
             },
             {
-                "command": "vscode-docker.registries.logInToDockerCli",
-                "title": "%vscode-docker.commands.registries.logInToDockerCli%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.logInToDockerCli",
+                "title": "%vscode-containers.commands.registries.logInToDockerCli%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.logOutOfDockerCli",
-                "title": "%vscode-docker.commands.registries.logOutOfDockerCli%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.logOutOfDockerCli",
+                "title": "%vscode-containers.commands.registries.logOutOfDockerCli%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.pullImage",
-                "title": "%vscode-docker.commands.registries.pullImage%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.pullImage",
+                "title": "%vscode-containers.commands.registries.pullImage%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.pullRepository",
-                "title": "%vscode-docker.commands.registries.pullRepository%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.pullRepository",
+                "title": "%vscode-containers.commands.registries.pullRepository%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.reconnectRegistry",
-                "title": "%vscode-docker.commands.registries.reconnectRegistry%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%"
+                "command": "vscode-containers.registries.reconnectRegistry",
+                "title": "%vscode-containers.commands.registries.reconnectRegistry%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%"
             },
             {
-                "command": "vscode-docker.registries.refresh",
-                "title": "%vscode-docker.commands.registries.refresh%",
-                "category": "%vscode-docker.commands.category.dockerRegistries%",
+                "command": "vscode-containers.registries.refresh",
+                "title": "%vscode-containers.commands.registries.refresh%",
+                "category": "%vscode-containers.commands.category.dockerRegistries%",
                 "icon": "$(refresh)"
             },
             {
-                "command": "vscode-docker.volumes.configureExplorer",
-                "title": "%vscode-docker.commands.volumes.configureExplorer%",
-                "category": "%vscode-docker.commands.category.dockerVolumes%",
+                "command": "vscode-containers.volumes.configureExplorer",
+                "title": "%vscode-containers.commands.volumes.configureExplorer%",
+                "category": "%vscode-containers.commands.category.dockerVolumes%",
                 "icon": "$(settings-gear)"
             },
             {
-                "command": "vscode-docker.volumes.inspect",
-                "title": "%vscode-docker.commands.volumes.inspect%",
-                "category": "%vscode-docker.commands.category.dockerVolumes%"
+                "command": "vscode-containers.volumes.inspect",
+                "title": "%vscode-containers.commands.volumes.inspect%",
+                "category": "%vscode-containers.commands.category.dockerVolumes%"
             },
             {
-                "command": "vscode-docker.volumes.prune",
-                "title": "%vscode-docker.commands.volumes.prune%",
-                "category": "%vscode-docker.commands.category.dockerVolumes%",
+                "command": "vscode-containers.volumes.prune",
+                "title": "%vscode-containers.commands.volumes.prune%",
+                "category": "%vscode-containers.commands.category.dockerVolumes%",
                 "icon": "$(clear-all)"
             },
             {
-                "command": "vscode-docker.volumes.refresh",
-                "title": "%vscode-docker.commands.volumes.refresh%",
-                "category": "%vscode-docker.commands.category.dockerVolumes%",
+                "command": "vscode-containers.volumes.refresh",
+                "title": "%vscode-containers.commands.volumes.refresh%",
+                "category": "%vscode-containers.commands.category.dockerVolumes%",
                 "icon": "$(refresh)"
             },
             {
-                "command": "vscode-docker.volumes.remove",
-                "title": "%vscode-docker.commands.volumes.remove%",
-                "category": "%vscode-docker.commands.category.dockerVolumes%"
+                "command": "vscode-containers.volumes.remove",
+                "title": "%vscode-containers.commands.volumes.remove%",
+                "category": "%vscode-containers.commands.category.dockerVolumes%"
             },
             {
-                "command": "vscode-docker.help",
-                "title": "%vscode-docker.commands.help%",
-                "category": "%vscode-docker.commands.category.docker%",
+                "command": "vscode-containers.help",
+                "title": "%vscode-containers.commands.help%",
+                "category": "%vscode-containers.commands.category.docker%",
                 "icon": "$(question)"
             },
             {
-                "command": "vscode-docker.help.reportIssue",
-                "title": "%vscode-docker.commands.help.reportIssue%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.help.reportIssue",
+                "title": "%vscode-containers.commands.help.reportIssue%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.help.openWalkthrough",
-                "title": "%vscode-docker.commands.help.openWalkthrough%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.help.openWalkthrough",
+                "title": "%vscode-containers.commands.help.openWalkthrough%",
+                "category": "%vscode-containers.commands.category.docker%"
             },
             {
-                "command": "vscode-docker.contexts.use",
-                "title": "%vscode-docker.commands.contexts.use%",
-                "category": "%vscode-docker.commands.category.contexts%",
+                "command": "vscode-containers.contexts.use",
+                "title": "%vscode-containers.commands.contexts.use%",
+                "category": "%vscode-containers.commands.category.contexts%",
                 "icon": "$(check)"
             },
             {
-                "command": "vscode-docker.contexts.remove",
-                "title": "%vscode-docker.commands.contexts.remove%",
-                "category": "%vscode-docker.commands.category.contexts%"
+                "command": "vscode-containers.contexts.remove",
+                "title": "%vscode-containers.commands.contexts.remove%",
+                "category": "%vscode-containers.commands.category.contexts%"
             },
             {
-                "command": "vscode-docker.contexts.inspect",
-                "title": "%vscode-docker.commands.contexts.inspect%",
-                "category": "%vscode-docker.commands.category.contexts%"
+                "command": "vscode-containers.contexts.inspect",
+                "title": "%vscode-containers.commands.contexts.inspect%",
+                "category": "%vscode-containers.commands.category.contexts%"
             },
             {
-                "command": "vscode-docker.contexts.configureExplorer",
-                "title": "%vscode-docker.commands.contexts.configureExplorer%",
-                "category": "%vscode-docker.commands.category.contexts%",
+                "command": "vscode-containers.contexts.configureExplorer",
+                "title": "%vscode-containers.commands.contexts.configureExplorer%",
+                "category": "%vscode-containers.commands.category.contexts%",
                 "icon": "$(settings-gear)"
             },
             {
-                "command": "vscode-docker.contexts.refresh",
-                "title": "%vscode-docker.commands.contexts.refresh%",
-                "category": "%vscode-docker.commands.category.contexts%",
+                "command": "vscode-containers.contexts.refresh",
+                "title": "%vscode-containers.commands.contexts.refresh%",
+                "category": "%vscode-containers.commands.category.contexts%",
                 "icon": "$(refresh)"
             },
             {
-                "command": "vscode-docker.contexts.help",
-                "title": "%vscode-docker.commands.contexts.help%",
-                "category": "%vscode-docker.commands.category.contexts%",
+                "command": "vscode-containers.contexts.help",
+                "title": "%vscode-containers.commands.contexts.help%",
+                "category": "%vscode-containers.commands.category.contexts%",
                 "icon": "$(question)"
             },
             {
-                "command": "vscode-docker.activateRegistryProviders",
-                "title": "%vscode-docker.commands.activateRegistryProviders%",
-                "category": "%vscode-docker.commands.category.docker%"
+                "command": "vscode-containers.activateRegistryProviders",
+                "title": "%vscode-containers.commands.activateRegistryProviders%",
+                "category": "%vscode-containers.commands.category.docker%"
             }
         ],
         "views": {
-            "dockerView": [
+            "containersView": [
                 {
-                    "id": "dockerContainers",
-                    "name": "%vscode-docker.views.dockerContainers%"
+                    "id": "vscode-containers.views.containers",
+                    "name": "%vscode-containers.views.dockerContainers%"
                 },
                 {
-                    "id": "dockerImages",
-                    "name": "%vscode-docker.views.dockerImages%"
+                    "id": "vscode-containers.views.images",
+                    "name": "%vscode-containers.views.dockerImages%"
                 },
                 {
-                    "id": "dockerRegistries",
-                    "name": "%vscode-docker.views.dockerRegistries%"
+                    "id": "vscode-containers.views.registries",
+                    "name": "%vscode-containers.views.dockerRegistries%"
                 },
                 {
-                    "id": "dockerNetworks",
-                    "name": "%vscode-docker.views.dockerNetworks%",
+                    "id": "vscode-containers.views.networks",
+                    "name": "%vscode-containers.views.dockerNetworks%",
                     "visibility": "collapsed"
                 },
                 {
-                    "id": "dockerVolumes",
-                    "name": "%vscode-docker.views.dockerVolumes%",
+                    "id": "vscode-containers.views.volumes",
+                    "name": "%vscode-containers.views.dockerVolumes%",
                     "visibility": "collapsed"
                 },
                 {
-                    "id": "vscode-docker.views.dockerContexts",
-                    "name": "%vscode-docker.views.dockerContexts%",
+                    "id": "vscode-containers.views.dockerContexts",
+                    "name": "%vscode-containers.views.dockerContexts%",
                     "visibility": "collapsed"
                 },
                 {
-                    "id": "vscode-docker.views.help",
-                    "name": "%vscode-docker.views.help%"
+                    "id": "vscode-containers.views.help",
+                    "name": "%vscode-containers.views.help%"
                 }
             ]
         },
@@ -2810,130 +2811,130 @@
             "activitybar": [
                 {
                     "icon": "resources/docker.svg",
-                    "id": "dockerView",
-                    "title": "%vscode-docker.views.activityBar%"
+                    "id": "containersView",
+                    "title": "%vscode-containers.views.activityBar%"
                 }
             ]
         },
         "walkthroughs": [
             {
                 "id": "dockerStart",
-                "title": "%vscode-docker.walkthrough.dockerStart.title%",
+                "title": "%vscode-containers.walkthrough.dockerStart.title%",
                 "featuredFor": [
                     "Dockerfile",
                     "docker-compose.yml",
                     "docker-compose.yaml"
                 ],
-                "description": "%vscode-docker.walkthrough.dockerStart.description%",
+                "description": "%vscode-containers.walkthrough.dockerStart.description%",
                 "steps": [
                     {
                         "id": "openFolder",
-                        "title": "%vscode-docker.walkthrough.dockerStart.openFolder.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.openFolder.title%",
                         "completionEvents": [
                             "onCommand:workbench.action.files.openFolder"
                         ],
                         "when": "workspaceFolderCount == 0 && !isMac",
-                        "description": "%vscode-docker.walkthrough.dockerStart.openFolder.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.openFolder.description%",
                         "media": {
                             "markdown": "resources/walkthroughs/empty.md"
                         }
                     },
                     {
                         "id": "openFolderMac",
-                        "title": "%vscode-docker.walkthrough.dockerStart.openFolder.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.openFolder.title%",
                         "completionEvents": [
                             "onCommand:workbench.action.files.openFileFolder"
                         ],
                         "when": "workspaceFolderCount == 0 && isMac",
-                        "description": "%vscode-docker.walkthrough.dockerStart.openFolderMac.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.openFolderMac.description%",
                         "media": {
                             "markdown": "resources/walkthroughs/empty.md"
                         }
                     },
                     {
                         "id": "scaffold",
-                        "title": "%vscode-docker.walkthrough.dockerStart.scaffold.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.scaffold.title%",
                         "completionEvents": [
-                            "onCommand:vscode-docker.configure",
-                            "onCommand:vscode-docker.configureCompose"
+                            "onCommand:vscode-containers.configure",
+                            "onCommand:vscode-containers.configureCompose"
                         ],
                         "when": "workspaceFolderCount > 0",
-                        "description": "%vscode-docker.walkthrough.dockerStart.scaffold.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.scaffold.description%",
                         "media": {
-                            "image": "https://github.com/microsoft/vscode-docker/raw/main/resources/walkthroughs/1g-addDockerFiles.gif",
+                            "image": "https://github.com/microsoft/vscode-containers/raw/main/resources/walkthroughs/1g-addDockerFiles.gif",
                             "altText": "Modifying Dockerfiles"
                         }
                     },
                     {
                         "id": "buildImage",
-                        "title": "%vscode-docker.walkthrough.dockerStart.buildImage.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.buildImage.title%",
                         "completionEvents": [
-                            "onCommand:vscode-docker.images.build"
+                            "onCommand:vscode-containers.images.build"
                         ],
                         "when": "workspaceFolderCount > 0",
-                        "description": "%vscode-docker.walkthrough.dockerStart.buildImage.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.buildImage.description%",
                         "media": {
-                            "image": "https://github.com/microsoft/vscode-docker/raw/main/resources/walkthroughs/2g-buildImage.gif",
+                            "image": "https://github.com/microsoft/vscode-containers/raw/main/resources/walkthroughs/2g-buildImage.gif",
                             "altText": "Building a Docker image"
                         }
                     },
                     {
                         "id": "runContainer",
-                        "title": "%vscode-docker.walkthrough.dockerStart.runContainer.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.runContainer.title%",
                         "completionEvents": [
-                            "onCommand:vscode-docker.images.run",
-                            "onCommand:vscode-docker.compose.up",
-                            "onCommand:vscode-docker.compose.up.subset"
+                            "onCommand:vscode-containers.images.run",
+                            "onCommand:vscode-containers.compose.up",
+                            "onCommand:vscode-containers.compose.up.subset"
                         ],
-                        "description": "%vscode-docker.walkthrough.dockerStart.runContainer.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.runContainer.description%",
                         "media": {
-                            "image": "https://github.com/microsoft/vscode-docker/raw/main/resources/walkthroughs/3g-runContainers.gif",
+                            "image": "https://github.com/microsoft/vscode-containers/raw/main/resources/walkthroughs/3g-runContainers.gif",
                             "altText": "Running a Docker container"
                         }
                     },
                     {
                         "id": "dockerExplorer",
-                        "title": "%vscode-docker.walkthrough.dockerStart.dockerExplorer.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.dockerExplorer.title%",
                         "completionEvents": [
-                            "onView:dockerContainers",
-                            "onCommand:workbench.view.extension.dockerView"
+                            "onView:vscode-containers.views.containers",
+                            "onCommand:workbench.view.extension.containersView"
                         ],
-                        "description": "%vscode-docker.walkthrough.dockerStart.dockerExplorer.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.dockerExplorer.description%",
                         "media": {
-                            "image": "https://github.com/microsoft/vscode-docker/raw/main/resources/walkthroughs/4g-useExplorer.gif",
+                            "image": "https://github.com/microsoft/vscode-containers/raw/main/resources/walkthroughs/4g-useExplorer.gif",
                             "altText": "Using the Docker explorer"
                         }
                     },
                     {
                         "id": "pushImage",
-                        "title": "%vscode-docker.walkthrough.dockerStart.pushImage.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.pushImage.title%",
                         "completionEvents": [
-                            "onCommand:vscode-docker.images.push"
+                            "onCommand:vscode-containers.images.push"
                         ],
-                        "description": "%vscode-docker.walkthrough.dockerStart.pushImage.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.pushImage.description%",
                         "media": {
-                            "image": "https://github.com/microsoft/vscode-docker/raw/main/resources/walkthroughs/5g-pushImage.gif",
+                            "image": "https://github.com/microsoft/vscode-containers/raw/main/resources/walkthroughs/5g-pushImage.gif",
                             "altText": "Pushing an image to a container registry"
                         }
                     },
                     {
                         "id": "azDeploy",
-                        "title": "%vscode-docker.walkthrough.dockerStart.azDeploy.title%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.azDeploy.title%",
                         "completionEvents": [
-                            "onCommand:vscode-docker.registries.deployImageToAzure",
-                            "onCommand:vscode-docker.registries.deployImageToAca"
+                            "onCommand:vscode-containers.registries.deployImageToAzure",
+                            "onCommand:vscode-containers.registries.deployImageToAca"
                         ],
-                        "description": "%vscode-docker.walkthrough.dockerStart.azDeploy.description%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.azDeploy.description%",
                         "when": "isAzureAccountInstalled",
                         "media": {
-                            "image": "https://github.com/microsoft/vscode-docker/raw/main/resources/walkthroughs/6g-deployToAppSvc.gif",
+                            "image": "https://github.com/microsoft/vscode-containers/raw/main/resources/walkthroughs/6g-deployToAppSvc.gif",
                             "altText": "Deploying to Azure App Service"
                         }
                     },
                     {
                         "id": "learn",
-                        "title": "%vscode-docker.walkthrough.dockerStart.learn.title%",
-                        "description": "%vscode-docker.walkthrough.dockerStart.learn.description%",
+                        "title": "%vscode-containers.walkthrough.dockerStart.learn.title%",
+                        "description": "%vscode-containers.walkthrough.dockerStart.learn.description%",
                         "completionEvents": [
                             "onStepSelected"
                         ],
@@ -2952,7 +2953,7 @@
         "virtualWorkspaces": false,
         "untrustedWorkspaces": {
             "supported": "limited",
-            "description": "%vscode-docker.workspaceTrust.description%",
+            "description": "%vscode-containers.workspaceTrust.description%",
             "restrictedConfigurations": [
                 "docker.commands.build",
                 "docker.commands.run",

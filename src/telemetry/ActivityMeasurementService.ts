@@ -63,7 +63,7 @@ export class ActivityMeasurementService implements IActivityMeasurementService {
                     this.values.set(type, newValue);
 
                     // Update long-term storage
-                    await this.memento.update(`vscode-docker.activity.${type}`, newValue);
+                    await this.memento.update(`vscode-containers.activity.${type}`, newValue);
                 }));
             }
 
@@ -90,7 +90,7 @@ export class ActivityMeasurementService implements IActivityMeasurementService {
         }
 
         if (!this.values.has(type)) {
-            const currentValue = this.memento.get<ActivityMeasurement>(`vscode-docker.activity.${type}`, defaultMeasurement);
+            const currentValue = this.memento.get<ActivityMeasurement>(`vscode-containers.activity.${type}`, defaultMeasurement);
             const now = Date.now();
 
             // If the last session was not in this month, reset the monthly session count

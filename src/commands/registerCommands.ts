@@ -112,105 +112,105 @@ export function registerCommand(commandId: string, callback: (context: IActionCo
 }
 
 export function registerCommands(): void {
-    registerWorkspaceCommand('vscode-docker.configure', scaffold);
-    registerWorkspaceCommand('vscode-docker.configureCompose', scaffoldCompose);
-    registerWorkspaceCommand('vscode-docker.debugging.initializeForDebugging', scaffoldDebugConfig);
+    registerWorkspaceCommand('vscode-containers.configure', scaffold);
+    registerWorkspaceCommand('vscode-containers.configureCompose', scaffoldCompose);
+    registerWorkspaceCommand('vscode-containers.debugging.initializeForDebugging', scaffoldDebugConfig);
 
-    registerWorkspaceCommand('vscode-docker.compose.down', composeDown);
-    registerWorkspaceCommand('vscode-docker.compose.restart', composeRestart);
-    registerWorkspaceCommand('vscode-docker.compose.up', composeUp);
-    registerWorkspaceCommand('vscode-docker.compose.up.subset', composeUpSubset);
-    registerCommand('vscode-docker.pruneSystem', pruneSystem);
+    registerWorkspaceCommand('vscode-containers.compose.down', composeDown);
+    registerWorkspaceCommand('vscode-containers.compose.restart', composeRestart);
+    registerWorkspaceCommand('vscode-containers.compose.up', composeUp);
+    registerWorkspaceCommand('vscode-containers.compose.up.subset', composeUpSubset);
+    registerCommand('vscode-containers.pruneSystem', pruneSystem);
 
-    registerWorkspaceCommand('vscode-docker.containers.attachShell', attachShellContainer);
-    registerCommand('vscode-docker.containers.browse', browseContainer);
-    registerCommand('vscode-docker.containers.downloadFile', downloadContainerFile);
-    registerCommand('vscode-docker.containers.inspect', inspectContainer);
-    registerCommand('vscode-docker.containers.configureExplorer', configureContainersExplorer);
-    registerCommand('vscode-docker.containers.openFile', openContainerFile);
-    registerCommand('vscode-docker.containers.prune', pruneContainers);
-    registerCommand('vscode-docker.containers.remove', removeContainer);
-    registerCommand('vscode-docker.containers.group.remove', removeContainerGroup);
-    registerCommand('vscode-docker.containers.restart', restartContainer);
-    registerCommand('vscode-docker.containers.select', selectContainer);
-    registerCommand('vscode-docker.containers.start', startContainer);
-    registerCommand('vscode-docker.containers.stop', stopContainer);
-    registerWorkspaceCommand('vscode-docker.containers.stats', stats);
-    registerWorkspaceCommand('vscode-docker.containers.viewLogs', viewContainerLogs);
-    registerWorkspaceCommand('vscode-docker.containers.composeGroup.logs', composeGroupLogs);
-    registerWorkspaceCommand('vscode-docker.containers.composeGroup.start', composeGroupStart);
-    registerWorkspaceCommand('vscode-docker.containers.composeGroup.stop', composeGroupStop);
-    registerWorkspaceCommand('vscode-docker.containers.composeGroup.restart', composeGroupRestart);
-    registerWorkspaceCommand('vscode-docker.containers.composeGroup.down', composeGroupDown);
+    registerWorkspaceCommand('vscode-containers.containers.attachShell', attachShellContainer);
+    registerCommand('vscode-containers.containers.browse', browseContainer);
+    registerCommand('vscode-containers.containers.downloadFile', downloadContainerFile);
+    registerCommand('vscode-containers.containers.inspect', inspectContainer);
+    registerCommand('vscode-containers.containers.configureExplorer', configureContainersExplorer);
+    registerCommand('vscode-containers.containers.openFile', openContainerFile);
+    registerCommand('vscode-containers.containers.prune', pruneContainers);
+    registerCommand('vscode-containers.containers.remove', removeContainer);
+    registerCommand('vscode-containers.containers.group.remove', removeContainerGroup);
+    registerCommand('vscode-containers.containers.restart', restartContainer);
+    registerCommand('vscode-containers.containers.select', selectContainer);
+    registerCommand('vscode-containers.containers.start', startContainer);
+    registerCommand('vscode-containers.containers.stop', stopContainer);
+    registerWorkspaceCommand('vscode-containers.containers.stats', stats);
+    registerWorkspaceCommand('vscode-containers.containers.viewLogs', viewContainerLogs);
+    registerWorkspaceCommand('vscode-containers.containers.composeGroup.logs', composeGroupLogs);
+    registerWorkspaceCommand('vscode-containers.containers.composeGroup.start', composeGroupStart);
+    registerWorkspaceCommand('vscode-containers.containers.composeGroup.stop', composeGroupStop);
+    registerWorkspaceCommand('vscode-containers.containers.composeGroup.restart', composeGroupRestart);
+    registerWorkspaceCommand('vscode-containers.containers.composeGroup.down', composeGroupDown);
 
-    registerWorkspaceCommand('vscode-docker.images.build', buildImage);
-    registerCommand('vscode-docker.images.configureExplorer', configureImagesExplorer);
-    registerCommand('vscode-docker.images.inspect', inspectImage);
-    registerCommand('vscode-docker.images.prune', pruneImages);
-    registerCommand('vscode-docker.images.showDangling', showDanglingImages);
-    registerCommand('vscode-docker.images.hideDangling', hideDanglingImages);
+    registerWorkspaceCommand('vscode-containers.images.build', buildImage);
+    registerCommand('vscode-containers.images.configureExplorer', configureImagesExplorer);
+    registerCommand('vscode-containers.images.inspect', inspectImage);
+    registerCommand('vscode-containers.images.prune', pruneImages);
+    registerCommand('vscode-containers.images.showDangling', showDanglingImages);
+    registerCommand('vscode-containers.images.hideDangling', hideDanglingImages);
     setInitialDanglingContextValue();
-    registerWorkspaceCommand('vscode-docker.images.pull', pullImage);
-    registerWorkspaceCommand('vscode-docker.images.push', pushImage);
-    registerCommand('vscode-docker.images.remove', removeImage);
-    registerCommand('vscode-docker.images.group.remove', removeImageGroup);
-    registerWorkspaceCommand('vscode-docker.images.run', runImage);
-    registerWorkspaceCommand('vscode-docker.images.runAzureCli', runAzureCliImage);
-    registerWorkspaceCommand('vscode-docker.images.runInteractive', runImageInteractive);
-    registerCommand('vscode-docker.images.tag', tagImage);
-    registerCommand('vscode-docker.images.copyFullTag', copyFullTag);
+    registerWorkspaceCommand('vscode-containers.images.pull', pullImage);
+    registerWorkspaceCommand('vscode-containers.images.push', pushImage);
+    registerCommand('vscode-containers.images.remove', removeImage);
+    registerCommand('vscode-containers.images.group.remove', removeImageGroup);
+    registerWorkspaceCommand('vscode-containers.images.run', runImage);
+    registerWorkspaceCommand('vscode-containers.images.runAzureCli', runAzureCliImage);
+    registerWorkspaceCommand('vscode-containers.images.runInteractive', runImageInteractive);
+    registerCommand('vscode-containers.images.tag', tagImage);
+    registerCommand('vscode-containers.images.copyFullTag', copyFullTag);
 
-    registerCommand('vscode-docker.networks.configureExplorer', configureNetworksExplorer);
-    registerCommand('vscode-docker.networks.create', createNetwork);
-    registerCommand('vscode-docker.networks.inspect', inspectNetwork);
-    registerCommand('vscode-docker.networks.remove', removeNetwork);
-    registerCommand('vscode-docker.networks.prune', pruneNetworks);
+    registerCommand('vscode-containers.networks.configureExplorer', configureNetworksExplorer);
+    registerCommand('vscode-containers.networks.create', createNetwork);
+    registerCommand('vscode-containers.networks.inspect', inspectNetwork);
+    registerCommand('vscode-containers.networks.remove', removeNetwork);
+    registerCommand('vscode-containers.networks.prune', pruneNetworks);
 
-    registerCommand('vscode-docker.registries.connectRegistry', connectRegistry);
-    registerCommand('vscode-docker.registries.copyImageDigest', copyRemoteImageDigest);
-    registerCommand('vscode-docker.registries.inspectRemoteImageManifest', inspectRemoteImageManifest);
-    registerCommand('vscode-docker.registries.copyRemoteFullTag', copyRemoteFullTag);
-    registerCommand('vscode-docker.registries.deleteImage', deleteRemoteImage);
-    registerCommand('vscode-docker.registries.deployImageToAzure', deployImageToAzure);
-    registerCommand('vscode-docker.registries.deployImageToAca', deployImageToAca);
-    registerCommand('vscode-docker.registries.disconnectRegistry', disconnectRegistry);
-    registerCommand('vscode-docker.registries.help', registryHelp);
-    registerWorkspaceCommand('vscode-docker.registries.logInToDockerCli', logInToDockerCli);
-    registerWorkspaceCommand('vscode-docker.registries.logOutOfDockerCli', logOutOfDockerCli);
-    registerWorkspaceCommand('vscode-docker.registries.pullImage', pullImageFromRepository);
-    registerWorkspaceCommand('vscode-docker.registries.pullRepository', pullRepository);
-    registerCommand('vscode-docker.registries.reconnectRegistry', reconnectRegistry);
+    registerCommand('vscode-containers.registries.connectRegistry', connectRegistry);
+    registerCommand('vscode-containers.registries.copyImageDigest', copyRemoteImageDigest);
+    registerCommand('vscode-containers.registries.inspectRemoteImageManifest', inspectRemoteImageManifest);
+    registerCommand('vscode-containers.registries.copyRemoteFullTag', copyRemoteFullTag);
+    registerCommand('vscode-containers.registries.deleteImage', deleteRemoteImage);
+    registerCommand('vscode-containers.registries.deployImageToAzure', deployImageToAzure);
+    registerCommand('vscode-containers.registries.deployImageToAca', deployImageToAca);
+    registerCommand('vscode-containers.registries.disconnectRegistry', disconnectRegistry);
+    registerCommand('vscode-containers.registries.help', registryHelp);
+    registerWorkspaceCommand('vscode-containers.registries.logInToDockerCli', logInToDockerCli);
+    registerWorkspaceCommand('vscode-containers.registries.logOutOfDockerCli', logOutOfDockerCli);
+    registerWorkspaceCommand('vscode-containers.registries.pullImage', pullImageFromRepository);
+    registerWorkspaceCommand('vscode-containers.registries.pullRepository', pullRepository);
+    registerCommand('vscode-containers.registries.reconnectRegistry', reconnectRegistry);
 
-    registerCommand('vscode-docker.registries.genericV2.removeTrackedRegistry', removeTrackedGenericV2Registry);
-    registerCommand('vscode-docker.registries.genericV2.addTrackedRegistry', addTrackedGenericV2Registry);
+    registerCommand('vscode-containers.registries.genericV2.removeTrackedRegistry', removeTrackedGenericV2Registry);
+    registerCommand('vscode-containers.registries.genericV2.addTrackedRegistry', addTrackedGenericV2Registry);
 
-    registerCommand('vscode-docker.registries.dockerHub.openInBrowser', openDockerHubInBrowser);
+    registerCommand('vscode-containers.registries.dockerHub.openInBrowser', openDockerHubInBrowser);
 
-    registerWorkspaceCommand('vscode-docker.registries.azure.buildImage', buildImageInAzure);
-    registerCommand('vscode-docker.registries.azure.createRegistry', createAzureRegistry);
-    registerCommand('vscode-docker.registries.azure.deleteRegistry', deleteAzureRegistry);
-    registerCommand('vscode-docker.registries.azure.deleteRepository', deleteAzureRepository);
-    registerCommand('vscode-docker.registries.azure.openInPortal', openInAzurePortal);
-    registerCommand('vscode-docker.registries.azure.untagImage', untagAzureImage);
-    registerCommand('vscode-docker.registries.azure.viewProperties', viewAzureProperties);
+    registerWorkspaceCommand('vscode-containers.registries.azure.buildImage', buildImageInAzure);
+    registerCommand('vscode-containers.registries.azure.createRegistry', createAzureRegistry);
+    registerCommand('vscode-containers.registries.azure.deleteRegistry', deleteAzureRegistry);
+    registerCommand('vscode-containers.registries.azure.deleteRepository', deleteAzureRepository);
+    registerCommand('vscode-containers.registries.azure.openInPortal', openInAzurePortal);
+    registerCommand('vscode-containers.registries.azure.untagImage', untagAzureImage);
+    registerCommand('vscode-containers.registries.azure.viewProperties', viewAzureProperties);
 
-    registerCommand('vscode-docker.volumes.configureExplorer', configureVolumesExplorer);
-    registerCommand('vscode-docker.volumes.inspect', inspectVolume);
-    registerCommand('vscode-docker.volumes.prune', pruneVolumes);
-    registerCommand('vscode-docker.volumes.remove', removeVolume);
+    registerCommand('vscode-containers.volumes.configureExplorer', configureVolumesExplorer);
+    registerCommand('vscode-containers.volumes.inspect', inspectVolume);
+    registerCommand('vscode-containers.volumes.prune', pruneVolumes);
+    registerCommand('vscode-containers.volumes.remove', removeVolume);
 
-    registerCommand('vscode-docker.contexts.configureExplorer', configureDockerContextsExplorer);
-    registerCommand('vscode-docker.contexts.help', dockerContextsHelp);
-    registerCommand('vscode-docker.contexts.inspect', inspectDockerContext);
-    registerCommand('vscode-docker.contexts.remove', removeDockerContext);
-    registerCommand('vscode-docker.contexts.use', useDockerContext);
+    registerCommand('vscode-containers.contexts.configureExplorer', configureDockerContextsExplorer);
+    registerCommand('vscode-containers.contexts.help', dockerContextsHelp);
+    registerCommand('vscode-containers.contexts.inspect', inspectDockerContext);
+    registerCommand('vscode-containers.contexts.remove', removeDockerContext);
+    registerCommand('vscode-containers.contexts.use', useDockerContext);
 
-    registerCommand('vscode-docker.openDockerDownloadPage', openDockerDownloadPage);
-    registerCommand('vscode-docker.help', help);
-    registerCommand('vscode-docker.help.openWalkthrough', () => commands.executeCommand('workbench.action.openWalkthrough', 'ms-azuretools.vscode-docker#dockerStart'));
-    registerCommand('vscode-docker.help.reportIssue', reportIssue);
+    registerCommand('vscode-containers.openDockerDownloadPage', openDockerDownloadPage);
+    registerCommand('vscode-containers.help', help);
+    registerCommand('vscode-containers.help.openWalkthrough', () => commands.executeCommand('workbench.action.openWalkthrough', 'ms-azuretools.vscode-containers#dockerStart'));
+    registerCommand('vscode-containers.help.reportIssue', reportIssue);
 
-    registerCommand('vscode-docker.activateRegistryProviders', (context: IActionContext) => {
+    registerCommand('vscode-containers.activateRegistryProviders', (context: IActionContext) => {
         // Do nothing, but registry provider extensions can use this command as an activation event
         context.telemetry.suppressAll = true;
         context.errorHandling.suppressDisplay = true;

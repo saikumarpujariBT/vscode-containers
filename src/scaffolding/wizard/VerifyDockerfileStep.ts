@@ -16,7 +16,7 @@ export class VerifyDockerfileStep<TWizardContext extends ScaffoldingWizardContex
             wizardContext.errorHandling.buttons = [
                 {
                     callback: async () => {
-                        void vscode.commands.executeCommand('vscode-docker.configure', wizardContext); // They have already answered several questions, so we can copy in the current wizard context to save time
+                        void vscode.commands.executeCommand('vscode-containers.configure', wizardContext); // They have already answered several questions, so we can copy in the current wizard context to save time
                     },
                     title: vscode.l10n.t('Add Docker Files'),
                 }

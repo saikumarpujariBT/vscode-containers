@@ -110,13 +110,13 @@ export class ContainersTreeItem extends LocalRootTreeItemBase<DockerContainerInf
     }
 
     private isNewContainerUser(): boolean {
-        return ext.context.globalState.get<boolean>('vscode-docker.container.newContainerUser', true);
+        return ext.context.globalState.get<boolean>('vscode-containers.container.newContainerUser', true);
     }
 
     private async updateNewContainerUser(items: DockerContainerInfo[]): Promise<void> {
         if (this.newContainerUser && items && items.length > 0) {
             this.newContainerUser = false;
-            await ext.context.globalState.update('vscode-docker.container.newContainerUser', false);
+            await ext.context.globalState.update('vscode-containers.container.newContainerUser', false);
         }
     }
 }

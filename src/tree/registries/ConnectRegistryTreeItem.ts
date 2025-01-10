@@ -25,7 +25,7 @@ export function getConnectRegistryTreeItem(): UnifiedRegistryItem<CommonRegistry
             type: ConnectRegistryContextValue,
             iconPath: new vscode.ThemeIcon('plug'),
             command: {
-                command: 'vscode-docker.registries.connectRegistry'
+                command: 'vscode-containers.registries.connectRegistry'
             },
             parent: undefined
         }

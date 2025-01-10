@@ -194,7 +194,7 @@ export class DockerDebugConfigurationProvider implements DebugConfigurationProvi
             );
         } else {
             // for now, we scaffold docker files
-            await commands.executeCommand('vscode-docker.configure');
+            await commands.executeCommand('vscode-containers.configure');
             throw new UserCancelledError();
         }
         // TODO: (potentially) in the future, we can add more support for ambient tasks for other types of projects

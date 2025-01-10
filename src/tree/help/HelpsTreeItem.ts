@@ -76,7 +76,7 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
             {
                 label: l10n.t('Open Docker Extension Walkthrough'),
                 contextValue: 'OpenWalkthrough',
-                commandId: 'vscode-docker.help.openWalkthrough',
+                commandId: 'vscode-containers.help.openWalkthrough',
                 iconPath: new ThemeIcon('extensions'),
                 includeInTreeItemPicker: true,
             }
@@ -104,7 +104,7 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
             {
                 label: l10n.t('Report Issue'),
                 contextValue: 'Report Issue',
-                commandId: 'vscode-docker.help.reportIssue',
+                commandId: 'vscode-containers.help.reportIssue',
                 iconPath: new ThemeIcon('comment'),
                 includeInTreeItemPicker: true,
             }
@@ -120,7 +120,7 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
             {
                 label: l10n.t('Docker Installation'),
                 contextValue: 'Docker Installation',
-                commandId: 'vscode-docker.openDockerDownloadPage',
+                commandId: 'vscode-containers.openDockerDownloadPage',
                 iconPath: new ThemeIcon('link-external'),
                 includeInTreeItemPicker: true,
             }

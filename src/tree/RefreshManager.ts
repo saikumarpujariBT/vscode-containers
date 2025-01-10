@@ -100,7 +100,7 @@ export class RefreshManager extends vscode.Disposable {
     }
 
     private setupRefreshOnRuntimeEvent(): void {
-        void callWithTelemetryAndErrorHandling('vscode-docker.tree.eventRefresh', async (context: IActionContext) => {
+        void callWithTelemetryAndErrorHandling('vscode-containers.tree.eventRefresh', async (context: IActionContext) => {
             context.errorHandling.suppressDisplay = true;
             context.telemetry.suppressIfSuccessful = true;
 
@@ -190,7 +190,7 @@ export class RefreshManager extends vscode.Disposable {
     private setupRefreshOnCommand(): void {
         for (const view of AllTreePrefixes) {
             // Because `registerCommand` pushes the disposables onto the `ext.context.subscriptions` array, we don't need to keep track of them
-            registerCommand(`vscode-docker.${view}.refresh`, async () => {
+            registerCommand(`vscode-containers.${view}.refresh`, async () => {
                 await this.refresh(view, 'manual');
             });
         }
@@ -200,7 +200,7 @@ export class RefreshManager extends vscode.Disposable {
         // Docker events do not include context change information, so we set up some filesystem listeners to watch
         // for changes to the Docker config file, which will be triggered by context changes
 
-        void callWithTelemetryAndErrorHandling('vscode-docker.tree.dockerConfigRefresh', async (context: IActionContext) => {
+        void callWithTelemetryAndErrorHandling('vscode-containers.tree.dockerConfigRefresh', async (context: IActionContext) => {
             context.errorHandling.suppressDisplay = true;
             context.telemetry.suppressIfSuccessful = true;
 
@@ -277,7 +277,7 @@ export class RefreshManager extends vscode.Disposable {
     }
 
     private refresh(target: RefreshTarget, reason: RefreshReason): Promise<void> {
-        return callWithTelemetryAndErrorHandling('vscode-docker.tree.refresh', async (context: IActionContext) => {
+        return callWithTelemetryAndErrorHandling('vscode-containers.tree.refresh', async (context: IActionContext) => {
             context.errorHandling.suppressDisplay = true;
             context.telemetry.properties.refreshReason = reason;
 

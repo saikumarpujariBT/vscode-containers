@@ -47,7 +47,7 @@ export function isAzureTag(item: unknown): item is AzureTag {
 }
 
 export class AzureRegistryDataProvider extends RegistryV2DataProvider implements vscode.Disposable {
-    public readonly id = 'vscode-docker.azureContainerRegistry';
+    public readonly id = 'vscode-containers.azureContainerRegistry';
     public readonly label = vscode.l10n.t('Azure');
     public readonly iconPath = new vscode.ThemeIcon('azure');
     public readonly description = vscode.l10n.t('Azure Container Registry');

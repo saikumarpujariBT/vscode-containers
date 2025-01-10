@@ -15,8 +15,8 @@ import { isWindows } from '../../utils/osUtils';
 type VsDbgVersion = 'latest'; // There are other versions but we don't use them
 type VsDbgRuntime = 'linux-x64' | 'linux-musl-x64' | 'linux-arm64' | 'linux-musl-arm64' | 'win7-x64';
 
-const scriptAcquiredDateKey = 'vscode-docker.vsdbgHelper.scriptAcquiredDate';
-const scriptExecutedDateKeyPrefix = 'vscode-docker.vsdbgHelper.scriptExecutedDate';
+const scriptAcquiredDateKey = 'vscode-containers.vsdbgHelper.scriptAcquiredDate';
+const scriptExecutedDateKeyPrefix = 'vscode-containers.vsdbgHelper.scriptExecutedDate';
 const dayInMs = 24 * 60 * 60 * 1000;
 
 export const vsDbgInstallBasePath = path.join(os.homedir(), '.vsdbg');

@@ -57,7 +57,7 @@ export async function getComposeProfileList(context: IActionContext, workspaceFo
     }
 
     // Fetch the previously chosen profiles list. By default, all will be selected.
-    const workspaceProfileListKey = `vscode-docker.composeProfiles.${workspaceFolder.name}`;
+    const workspaceProfileListKey = `vscode-containers.composeProfiles.${workspaceFolder.name}`;
     const previousChoices = ext.context.workspaceState.get<string[]>(workspaceProfileListKey, profiles);
     const result = preselectedProfiles?.length ? preselectedProfiles : await pickSubsets(context, 'profiles', profiles, previousChoices);
 
@@ -76,7 +76,7 @@ export async function getComposeServiceList(context: IActionContext, workspaceFo
     }
 
     // Fetch the previously chosen services list. By default, all will be selected.
-    const workspaceServiceListKey = `vscode-docker.composeServices.${workspaceFolder.name}`;
+    const workspaceServiceListKey = `vscode-containers.composeServices.${workspaceFolder.name}`;
     const previousChoices = ext.context.workspaceState.get<string[]>(workspaceServiceListKey, services);
     const result = preselectedServices?.length ? preselectedServices : await pickSubsets(context, 'services', services, previousChoices);
 

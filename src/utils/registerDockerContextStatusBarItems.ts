@@ -44,7 +44,7 @@ async function showStatusBarItemIfNeeded() {
         return;
     }
 
-    const dockerContextUseCommand = 'vscode-docker.contexts.use';
+    const dockerContextUseCommand = 'vscode-containers.contexts.use';
 
     ext.dockerContextStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 20);
     ext.dockerContextStatusBarItem.command = dockerContextUseCommand;

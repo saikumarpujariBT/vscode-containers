@@ -39,11 +39,11 @@ async function getStarted(): Promise<void> {
 }
 
 async function reviewIssues(): Promise<void> {
-    void vscode.env.openExternal(vscode.Uri.parse('https://github.com/microsoft/vscode-docker/issues'));
+    void vscode.env.openExternal(vscode.Uri.parse('https://github.com/microsoft/vscode-containers/issues'));
 }
 
 async function reportIssueFromHelpMenu(): Promise<void> {
-    return vscode.commands.executeCommand('vscode-docker.help.reportIssue');
+    return vscode.commands.executeCommand('vscode-containers.help.reportIssue');
 }
 
 async function editSettings(): Promise<void> {
