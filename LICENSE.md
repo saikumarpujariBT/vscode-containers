@@ -1,4 +1,4 @@
-Visual Studio Code Extension for Docker
+Container Tools for Visual Studio Code
 
 Copyright (c) Microsoft Corporation
 

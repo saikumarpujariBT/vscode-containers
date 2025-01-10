@@ -12,7 +12,7 @@ parameters:
 resources:
   pipelines:
     - pipeline: build # This must be "build"
-      source: \Azure Tools\VSCode\Extensions\vscode-docker # name of the pipeline that produces the artifacts
+      source: \Azure Tools\VSCode\Extensions\vscode-containers # name of the pipeline that produces the artifacts
   repositories:
     - repository: azExtTemplates
       type: github
