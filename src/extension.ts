@@ -10,6 +10,7 @@ import * as vscode from 'vscode';
 import { ConfigurationParams, DidChangeConfigurationNotification, DocumentSelector, LanguageClient, LanguageClientOptions, Middleware, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 import * as tas from 'vscode-tas-client';
 import { registerCommands } from './commands/registerCommands';
+import { configPrefix } from './constants';
 import { registerDebugProvider } from './debugging/DebugHelper';
 import { DockerExtensionApi } from './DockerExtensionApi';
 import { DockerfileCompletionItemProvider } from './dockerfileCompletionItemProvider';
@@ -104,7 +105,7 @@ export async function activateInternal(ctx: vscode.ExtensionContext, perfStats: 
         // Set up container filesystem provider
         ctx.subscriptions.push(
             vscode.workspace.registerFileSystemProvider(
-                'docker',
+                'containers',
                 new ContainerFilesProvider(),
                 {
                     // While Windows containers aren't generally case-sensitive, Linux containers are and make up the overwhelming majority of running containers.
@@ -156,11 +157,11 @@ function registerEnvironmentVariableContributions(): void {
     setEnvironmentVariableContributions();
 
     // Register an event to watch for changes to config, reconfigure if needed
-    registerEvent('docker.environment.changed', vscode.workspace.onDidChangeConfiguration, (actionContext: IActionContext, e: vscode.ConfigurationChangeEvent) => {
+    registerEvent('vscode-containers.environment.changed', vscode.workspace.onDidChangeConfiguration, (actionContext: IActionContext, e: vscode.ConfigurationChangeEvent) => {
         actionContext.telemetry.suppressAll = true;
         actionContext.errorHandling.suppressDisplay = true;
 
-        if (e.affectsConfiguration('docker.environment')) {
+        if (e.affectsConfiguration(`${configPrefix}.environment`)) {
             logDockerEnvironment(ext.outputChannel);
             setEnvironmentVariableContributions();
         }
@@ -168,7 +169,7 @@ function registerEnvironmentVariableContributions(): void {
 }
 
 function setEnvironmentVariableContributions(): void {
-    const settingValue: NodeJS.ProcessEnv = vscode.workspace.getConfiguration('docker').get<NodeJS.ProcessEnv>('environment', {});
+    const settingValue: NodeJS.ProcessEnv = vscode.workspace.getConfiguration(configPrefix).get<NodeJS.ProcessEnv>('environment', {});
 
     ext.context.environmentVariableCollection.clear();
     ext.context.environmentVariableCollection.persistent = true;
@@ -190,15 +191,15 @@ function registerDockerClients(): void {
     );
 
     // Register an event to watch for changes to config, reconfigure if needed
-    registerEvent('docker.command.changed', vscode.workspace.onDidChangeConfiguration, (actionContext: IActionContext, e: vscode.ConfigurationChangeEvent) => {
+    registerEvent('vscode-containers.command.changed', vscode.workspace.onDidChangeConfiguration, (actionContext: IActionContext, e: vscode.ConfigurationChangeEvent) => {
         actionContext.telemetry.suppressAll = true;
         actionContext.errorHandling.suppressDisplay = true;
 
-        if (e.affectsConfiguration('docker.dockerPath')) {
+        if (e.affectsConfiguration(`${configPrefix}.containerCommand`)) {
             dockerClient.reconfigure();
         }
 
-        if (e.affectsConfiguration('docker.composeCommand')) {
+        if (e.affectsConfiguration(`${configPrefix}.composeCommand`)) {
             composeClient.reconfigure();
         }
     });
@@ -241,7 +242,7 @@ namespace Configuration {
 
 function activateDockerfileLanguageClient(ctx: vscode.ExtensionContext): void {
     // Don't wait
-    void callWithTelemetryAndErrorHandling('docker.languageclient.activate', async (context: IActionContext) => {
+    void callWithTelemetryAndErrorHandling('vscode-containers.languageclient.activate', async (context: IActionContext) => {
         context.telemetry.properties.isActivationEvent = 'true';
         const serverModule = ctx.asAbsolutePath(
             path.join(
@@ -297,11 +298,11 @@ function activateDockerfileLanguageClient(ctx: vscode.ExtensionContext): void {
 
 function activateComposeLanguageClient(ctx: vscode.ExtensionContext): void {
     // Don't wait
-    void callWithTelemetryAndErrorHandling('docker.composelanguageclient.activate', async (context: IActionContext) => {
+    void callWithTelemetryAndErrorHandling('vscode-containers.composelanguageclient.activate', async (context: IActionContext) => {
         context.telemetry.properties.isActivationEvent = 'true';
 
-        const config = vscode.workspace.getConfiguration('docker');
-        if (!config.get('enableDockerComposeLanguageService', true)) {
+        const config = vscode.workspace.getConfiguration(configPrefix);
+        if (!config.get('enableComposeLanguageService', true)) {
             throw new UserCancelledError('languageServiceDisabled');
         }
 
@@ -335,7 +336,7 @@ function activateComposeLanguageClient(ctx: vscode.ExtensionContext): void {
 
         composeLanguageClient = new LanguageClient(
             "compose-language-service",
-            "Docker Compose Language Server",
+            "Compose Language Server",
             serverOptions,
             clientOptions
         );

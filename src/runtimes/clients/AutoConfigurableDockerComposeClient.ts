@@ -5,6 +5,7 @@
 
 import { DockerComposeClient, IContainerOrchestratorClient } from '@microsoft/vscode-container-client';
 import * as vscode from 'vscode';
+import { configPrefix } from '../../constants';
 import { ext } from '../../extensionVariables';
 import { execAsync } from '../../utils/execAsync';
 import { AsyncLazy } from '../../utils/lazy';
@@ -35,7 +36,7 @@ export class AutoConfigurableDockerComposeClient extends DockerComposeClient imp
     }
 
     private async detectComposeConfig(): Promise<ComposeConfig> {
-        const config = vscode.workspace.getConfiguration('docker');
+        const config = vscode.workspace.getConfiguration(configPrefix);
 
         let composeCommand = config.get<string | undefined>('composeCommand');
 

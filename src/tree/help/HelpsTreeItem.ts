@@ -74,7 +74,7 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
         const node = new GenericTreeItem(
             this,
             {
-                label: l10n.t('Open Docker Extension Walkthrough'),
+                label: l10n.t('Open Container Tools Extension Walkthrough'),
                 contextValue: 'OpenWalkthrough',
                 commandId: 'vscode-containers.help.openWalkthrough',
                 iconPath: new ThemeIcon('extensions'),

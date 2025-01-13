@@ -6,7 +6,7 @@
 import * as vscode from 'vscode';
 import { Lazy } from "./utils/lazy";
 
-export const configPrefix: string = 'docker';
+export const configPrefix: string = 'containers';
 
 // Consider downloading multiple pages (images, tags, etc)
 export const PAGE_SIZE = 100;

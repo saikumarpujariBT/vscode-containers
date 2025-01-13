@@ -6,6 +6,7 @@
 import { IActionContext, registerEvent } from '@microsoft/vscode-azext-utils';
 import { ListContextItem } from '@microsoft/vscode-container-client';
 import * as vscode from 'vscode';
+import { configPrefix } from '../constants';
 import { ext } from "../extensionVariables";
 
 const dockerContextStatusBarSetting = 'contexts.showInStatusBar';
@@ -17,7 +18,7 @@ export function registerDockerContextStatusBarEvent(ctx: vscode.ExtensionContext
         actionContext.telemetry.suppressAll = true;
         actionContext.errorHandling.suppressDisplay = true;
 
-        if (e.affectsConfiguration('docker.contexts.showInStatusBar')) {
+        if (e.affectsConfiguration(`${configPrefix}.contexts.showInStatusBar`)) {
             // Don't wait
             void scheduleUpdateStatusBar();
         }
@@ -34,7 +35,7 @@ export function registerDockerContextStatusBarEvent(ctx: vscode.ExtensionContext
 
 async function showStatusBarItemIfNeeded() {
 
-    const config = vscode.workspace.getConfiguration('docker');
+    const config = vscode.workspace.getConfiguration(configPrefix);
     let currentDockerContext: ListContextItem | undefined;
     // if dockerContextStatusBarItem is created, then we dispose
     ext.dockerContextStatusBarItem?.dispose();

@@ -7,6 +7,7 @@ import { AzureWizardExecuteStep, DialogResponses, UserCancelledError } from '@mi
 import * as fse from 'fs-extra';
 import * as path from 'path';
 import * as vscode from 'vscode';
+import { configPrefix } from '../../constants';
 import { ext } from '../../extensionVariables';
 import { getHandlebarsWithHelpers } from '../../utils/getHandlebarsWithHelpers';
 import { ScaffoldedFileType, ScaffoldingWizardContext } from './ScaffoldingWizardContext';
@@ -52,7 +53,7 @@ export class ScaffoldFileStep<TWizardContext extends ScaffoldingWizardContext> e
     }
 
     private async getInputPath(wizardContext: TWizardContext): Promise<string> {
-        const config = vscode.workspace.getConfiguration('docker');
+        const config = vscode.workspace.getConfiguration(configPrefix);
         const settingsTemplatesPath = config.get<string | undefined>('scaffolding.templatePath', undefined);
         const defaultTemplatesPath = path.join(ext.context.asAbsolutePath('resources'), 'templates');
 

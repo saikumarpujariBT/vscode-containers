@@ -80,7 +80,7 @@ export class DockerSiteCreateStep extends AzureWizardExecuteStep<IAppServiceCont
         else if (isAzureRegistry(registryTI.wrappedItem) && context.customLocation) {
             const cred = await (registryTI.provider as unknown as AzureRegistryDataProvider).tryGetAdminCredentials(registryTI.wrappedItem);
             if (!cred?.username || !cred?.passwords?.[0]?.value) {
-                throw new Error(l10n.t('Azure App service deployment on Azure Arc only supports running images from Azure Container Registries with admin enabled'));
+                throw new Error(l10n.t('Azure App service deployment on Azure Arc only supports running images from Azure Container Registry with admin enabled'));
             }
 
             username = cred.username;

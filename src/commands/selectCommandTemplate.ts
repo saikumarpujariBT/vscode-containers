@@ -6,6 +6,7 @@
 import { IActionContext, IAzureQuickPickItem, IAzureQuickPickOptions, UserCancelledError } from '@microsoft/vscode-azext-utils';
 import { PortBinding, quoted, VoidCommandResponse } from '@microsoft/vscode-container-client';
 import * as vscode from 'vscode';
+import { configPrefix } from '../constants';
 import { ext } from '../extensionVariables';
 import { isDockerComposeClient } from '../runtimes/OrchestratorRuntimeManager';
 import { resolveVariables } from '../utils/resolveVariables';
@@ -121,7 +122,7 @@ export async function selectCommandTemplate(
     additionalVariables: { [key: string]: string },
     // The following three are overridable for test purposes, but have default values that cover actual usage
     templatePicker: TemplatePicker = (i, o) => actionContext.ui.showQuickPick(i, o), // Default is the normal ext.ui.showQuickPick (this longer syntax is because doing `ext.ui.showQuickPick` alone doesn't result in the right `this` further down)
-    getCommandSettings: () => CommandSettings = () => vscode.workspace.getConfiguration('docker').inspect<string | CommandTemplate[]>(`commands.${command}`)
+    getCommandSettings: () => CommandSettings = () => vscode.workspace.getConfiguration(configPrefix).inspect<string | CommandTemplate[]>(`commands.${command}`)
 ): Promise<VoidCommandResponse> {
     // Get the configured settings values
     const commandSettings = getCommandSettings();

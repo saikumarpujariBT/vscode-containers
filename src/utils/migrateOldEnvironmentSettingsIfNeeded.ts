@@ -5,6 +5,7 @@
 
 import { DialogResponses } from '@microsoft/vscode-azext-utils';
 import * as vscode from 'vscode';
+import { configPrefix } from '../constants';
 import { cloneObject } from './cloneObject';
 
 const oldSettingsMap = {
@@ -16,7 +17,7 @@ const oldSettingsMap = {
 };
 
 export async function migrateOldEnvironmentSettingsIfNeeded(): Promise<void> {
-    const oldConfig = vscode.workspace.getConfiguration('docker');
+    const oldConfig = vscode.workspace.getConfiguration(configPrefix);
     const newConfig = oldConfig;
 
     let alreadyPrompted = false;

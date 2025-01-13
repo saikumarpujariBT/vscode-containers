@@ -7,6 +7,7 @@ import { AzExtTreeItem, callWithTelemetryAndErrorHandling, IActionContext, parse
 import { EventAction, EventType, isCancellationError } from '@microsoft/vscode-container-client';
 import * as os from 'os';
 import * as vscode from 'vscode';
+import { configPrefix } from '../constants';
 import { ext } from '../extensionVariables';
 import { debounce } from '../utils/debounce';
 import { AllTreePrefixes, TreePrefix } from './TreePrefix';
@@ -179,7 +180,7 @@ export class RefreshManager extends vscode.Disposable {
         this.autoRefreshDisposables.push(
             vscode.workspace.onDidChangeConfiguration(async (e: vscode.ConfigurationChangeEvent) => {
                 for (const view of AllTreePrefixes) {
-                    if (e.affectsConfiguration(`docker.${view}`)) {
+                    if (e.affectsConfiguration(`${configPrefix}.${view}`)) {
                         await this.refresh(view, 'config');
                     }
                 }

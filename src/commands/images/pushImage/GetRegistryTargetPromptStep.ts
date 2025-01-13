@@ -7,6 +7,7 @@ import { AzureWizardPromptStep, IActionContext, NoResourceFoundError } from '@mi
 import { parseDockerLikeImageName } from '@microsoft/vscode-container-client';
 import { CommonRegistry } from '@microsoft/vscode-docker-registries';
 import * as vscode from 'vscode';
+import { configPrefix } from '../../../constants';
 import { ext } from '../../../extensionVariables';
 import { NormalizedImageNameInfo } from '../../../tree/images/NormalizedImageNameInfo';
 import { AzureSubscriptionRegistryItem, isAzureSubscriptionRegistryItem } from '../../../tree/registries/Azure/AzureRegistryDataProvider';
@@ -58,7 +59,7 @@ export class GetRegistryTargetPromptStep extends AzureWizardPromptStep<PushImage
     }
 
     private get shouldPromptForRegistry(): boolean {
-        return vscode.workspace.getConfiguration('docker').get('promptForRegistryWhenPushingImages', true);
+        return vscode.workspace.getConfiguration(configPrefix).get('promptForRegistryWhenPushingImages', true);
     }
 
     private registryIsDeterminate(imageName: string): boolean {

@@ -4,11 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { workspace } from 'vscode';
+import { configPrefix } from '../constants';
 import { cloneObject } from './cloneObject';
 
 export function withDockerEnvSettings(baseEnv: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
     const newEnv = cloneObject(baseEnv || {});
-    const environmentSettings: NodeJS.ProcessEnv = workspace.getConfiguration('docker').get<NodeJS.ProcessEnv>('environment', {});
+    const environmentSettings: NodeJS.ProcessEnv = workspace.getConfiguration(configPrefix).get<NodeJS.ProcessEnv>('environment', {});
 
     for (const key of Object.keys(environmentSettings)) {
         newEnv[key] = environmentSettings[key];

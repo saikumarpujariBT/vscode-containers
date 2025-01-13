@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from 'vscode';
+import { configPrefix } from '../constants';
 
 export function isLogLevelEnabled(outputChannel: vscode.LogOutputChannel, logLevel: vscode.LogLevel): boolean {
     return outputChannel && outputChannel.logLevel > 0 && outputChannel.logLevel <= logLevel;
@@ -26,7 +27,7 @@ export function logProcessEnvironment(outputChannel: vscode.LogOutputChannel): v
 export function logDockerEnvironment(outputChannel: vscode.LogOutputChannel): void {
     if (isLogLevelEnabled(outputChannel, vscode.LogLevel.Debug)) {
         try {
-            const settingValue: NodeJS.ProcessEnv = vscode.workspace.getConfiguration('docker').get<NodeJS.ProcessEnv>('environment', {});
+            const settingValue: NodeJS.ProcessEnv = vscode.workspace.getConfiguration(configPrefix).get<NodeJS.ProcessEnv>('environment', {});
 
             outputChannel.debug(`--- Docker Environment (${Object.getOwnPropertyNames(settingValue).length}) ---`);
             for (const key of Object.keys(settingValue)) {

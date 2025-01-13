@@ -5,6 +5,7 @@
 
 import { ListContainersItem } from "@microsoft/vscode-container-client";
 import { l10n, ThemeColor, ThemeIcon, workspace } from "vscode";
+import { configPrefix } from "../../constants";
 import { commonProperties, CommonProperty, getCommonPropertyValue } from "../settings/CommonProperties";
 import { ITreePropertyInfo } from "../settings/ITreeSettingInfo";
 
@@ -67,7 +68,7 @@ export function getContainerPropertyValue(item: ListContainersItem, property: Co
         case 'Image':
             return item.image.originalName;
         case 'Label':
-            return getLabelGroup(item, workspace.getConfiguration('docker')?.get<string | undefined>('containers.groupByLabel', undefined), NonLabelGroupName);
+            return getLabelGroup(item, workspace.getConfiguration(configPrefix)?.get<string | undefined>('containers.groupByLabel', undefined), NonLabelGroupName);
         default:
             return getCommonPropertyValue(item, property);
     }

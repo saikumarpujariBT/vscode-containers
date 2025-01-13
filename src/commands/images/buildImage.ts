@@ -7,6 +7,7 @@ import { IActionContext, UserCancelledError } from "@microsoft/vscode-azext-util
 import { quoted } from "@microsoft/vscode-container-client";
 import * as path from "path";
 import * as vscode from "vscode";
+import { configPrefix } from "../../constants";
 import { ext } from "../../extensionVariables";
 import { TaskCommandRunnerFactory } from "../../runtimes/runners/TaskCommandRunnerFactory";
 import { getOfficialBuildTaskForDockerfile } from "../../tasks/TaskHelper";
@@ -24,7 +25,7 @@ export async function buildImage(context: IActionContext, dockerFileUri: vscode.
         throw new UserCancelledError('enforceTrust');
     }
 
-    const configOptions: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('docker');
+    const configOptions: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration(configPrefix);
     const defaultContextPath = configOptions.get('imageBuildContextPath', '');
 
     let rootFolder: vscode.WorkspaceFolder;

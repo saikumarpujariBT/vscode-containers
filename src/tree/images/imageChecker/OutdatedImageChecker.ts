@@ -6,7 +6,7 @@
 import { IActionContext, callWithTelemetryAndErrorHandling } from '@microsoft/vscode-azext-utils';
 import { ListImagesItem } from '@microsoft/vscode-container-client';
 import * as vscode from 'vscode';
-import { ociClientId } from '../../../constants';
+import { configPrefix, ociClientId } from '../../../constants';
 import { ext } from '../../../extensionVariables';
 import { RequestOptionsLike, httpRequest } from '../../../utils/httpRequest';
 import { DatedDockerImage } from '../ImagesTreeItem';
@@ -18,7 +18,7 @@ export class OutdatedImageChecker {
     private readonly defaultRequestOptions: RequestOptionsLike;
 
     public constructor() {
-        const dockerConfig = vscode.workspace.getConfiguration('docker');
+        const dockerConfig = vscode.workspace.getConfiguration(configPrefix);
         this.shouldLoad = dockerConfig.get('images.checkForOutdatedImages');
 
         this.defaultRequestOptions = {

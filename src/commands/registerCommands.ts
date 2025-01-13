@@ -175,8 +175,8 @@ export function registerCommands(): void {
     registerCommand('vscode-containers.registries.deployImageToAca', deployImageToAca);
     registerCommand('vscode-containers.registries.disconnectRegistry', disconnectRegistry);
     registerCommand('vscode-containers.registries.help', registryHelp);
-    registerWorkspaceCommand('vscode-containers.registries.logInToDockerCli', logInToDockerCli);
-    registerWorkspaceCommand('vscode-containers.registries.logOutOfDockerCli', logOutOfDockerCli);
+    registerWorkspaceCommand('vscode-containers.registries.logInToContainerCli', logInToDockerCli);
+    registerWorkspaceCommand('vscode-containers.registries.logOutOfContainerCli', logOutOfDockerCli);
     registerWorkspaceCommand('vscode-containers.registries.pullImage', pullImageFromRepository);
     registerWorkspaceCommand('vscode-containers.registries.pullRepository', pullRepository);
     registerCommand('vscode-containers.registries.reconnectRegistry', reconnectRegistry);
@@ -207,7 +207,7 @@ export function registerCommands(): void {
 
     registerCommand('vscode-containers.openDockerDownloadPage', openDockerDownloadPage);
     registerCommand('vscode-containers.help', help);
-    registerCommand('vscode-containers.help.openWalkthrough', () => commands.executeCommand('workbench.action.openWalkthrough', 'ms-azuretools.vscode-containers#dockerStart'));
+    registerCommand('vscode-containers.help.openWalkthrough', () => commands.executeCommand('workbench.action.openWalkthrough', 'ms-azuretools.vscode-containers#containersStart'));
     registerCommand('vscode-containers.help.reportIssue', reportIssue);
 
     registerCommand('vscode-containers.activateRegistryProviders', (context: IActionContext) => {

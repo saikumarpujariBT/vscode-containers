@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IActionContext, UserCancelledError, callWithTelemetryAndErrorHandling } from '@microsoft/vscode-azext-utils';
-import { ConfigurationTarget, MessageItem, WorkspaceConfiguration, commands, workspace, l10n } from 'vscode';
-import { extensionId } from '../constants';
+import { ConfigurationTarget, MessageItem, WorkspaceConfiguration, commands, l10n, workspace } from 'vscode';
+import { configPrefix, extensionId } from '../constants';
 import { DockerExtensionKind, IVSCodeRemoteInfo, RemoteKind, getVSCodeRemoteInfo } from '../utils/getVSCodeRemoteInfo';
 import { registerCommand } from './registerCommands';
 
@@ -27,7 +27,7 @@ export function registerWorkspaceCommand(commandId: string, callback: (context: 
 }
 
 async function verifyIsRunningInWorkspace(context: IActionContext): Promise<void> {
-    const config: WorkspaceConfiguration = workspace.getConfiguration('docker');
+    const config: WorkspaceConfiguration = workspace.getConfiguration(configPrefix);
     if (!!config.get('showRemoteWorkspaceWarning')) {
         const remoteInfo: IVSCodeRemoteInfo = getVSCodeRemoteInfo(context);
         if (remoteInfo.extensionKind === DockerExtensionKind.ui) {

@@ -5,6 +5,7 @@
 
 import { IActionContext, UserCancelledError } from '@microsoft/vscode-azext-utils';
 import * as vscode from 'vscode';
+import { configPrefix } from '../../constants';
 import { ext } from '../../extensionVariables';
 import { TaskCommandRunnerFactory } from '../../runtimes/runners/TaskCommandRunnerFactory';
 import { Item, createFileItem, quickPickDockerComposeFileItem } from '../../utils/quickPickFile';
@@ -42,9 +43,9 @@ async function compose(context: IActionContext, commands: ('up' | 'down' | 'upSu
         selectedItems = selectedItem ? [selectedItem] : [];
     }
 
-    const configOptions: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('docker');
-    const build: boolean = configOptions.get('dockerComposeBuild', true);
-    const detached: boolean = configOptions.get('dockerComposeDetached', true);
+    const configOptions: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration(configPrefix);
+    const build: boolean = configOptions.get('composeBuild', true);
+    const detached: boolean = configOptions.get('composeDetached', true);
 
     for (const command of commands) {
         if (selectedItems.length === 0) {
