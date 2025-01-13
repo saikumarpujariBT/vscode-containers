@@ -42,8 +42,4 @@ export type DockerOrchestration = 'single' | 'docker-compose';
 
 export const builtInNetworks: string[] = ['bridge', 'host', 'none'];
 
-export const dockerComposeHeader = `version: '3.4'
-
-services:`;
-
 export const ociClientId = 'tools/microsoft/vscode/docker';

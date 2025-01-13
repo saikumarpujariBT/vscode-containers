@@ -12,7 +12,7 @@ const maximumNotEditOnlySessions = 0;
 
 export const awareness: Survey = {
     id: 'aware',
-    prompt: l10n.t('The Docker extension is always adding new features. Would you like to learn more about them?'),
+    prompt: l10n.t('The Container Tools extension is always adding new features. Would you like to learn more about them?'),
     buttons: new Map<string, string | undefined>([
         [l10n.t('Watch a video'), 'https://aka.ms/AA8lh3s'],
         [l10n.t('Read docs'), 'https://aka.ms/AA9j59w'],

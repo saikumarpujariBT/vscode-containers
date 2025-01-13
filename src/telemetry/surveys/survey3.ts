@@ -11,7 +11,7 @@ const minimumOverallSessions = 10;
 
 export const survey3: Survey = {
     id: 'survey3',
-    prompt: l10n.t('How can we make the Docker extension better?'),
+    prompt: l10n.t('How can we make the Container Tools extension better?'),
     buttons: new Map<string, string | undefined>([
         [l10n.t('Take survey'), 'https://aka.ms/dockerextensionsurvey'],
         [l10n.t('Don\'t ask again'), undefined],

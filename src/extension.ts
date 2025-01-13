@@ -50,7 +50,7 @@ const DOCUMENT_SELECTOR: DocumentSelector = [
 function initializeExtensionVariables(ctx: vscode.ExtensionContext): void {
     ext.context = ctx;
 
-    ext.outputChannel = new AzExtLogOutputChannelWrapper(vscode.window.createOutputChannel('Docker', { log: true }), ext.prefix);
+    ext.outputChannel = new AzExtLogOutputChannelWrapper(vscode.window.createOutputChannel('Container Tools', { log: true }), ext.prefix);
     ctx.subscriptions.push(ext.outputChannel);
 
     registerUIExtensionVariables(ext);
@@ -61,7 +61,7 @@ export async function activateInternal(ctx: vscode.ExtensionContext, perfStats: 
 
     initializeExtensionVariables(ctx);
 
-    await callWithTelemetryAndErrorHandling('docker.activate', async (activateContext: IActionContext) => {
+    await callWithTelemetryAndErrorHandling('vscode-containers.activate', async (activateContext: IActionContext) => {
         activateContext.errorHandling.rethrow = true;
         activateContext.telemetry.properties.isActivationEvent = 'true';
         activateContext.telemetry.measurements.mainFileLoad = (perfStats.loadEndTime - perfStats.loadStartTime) / 1000;
@@ -142,7 +142,7 @@ export async function activateInternal(ctx: vscode.ExtensionContext, perfStats: 
 }
 
 export async function deactivateInternal(ctx: vscode.ExtensionContext): Promise<void> {
-    await callWithTelemetryAndErrorHandling('docker.deactivate', async (activateContext: IActionContext) => {
+    await callWithTelemetryAndErrorHandling('vscode-containers.deactivate', async (activateContext: IActionContext) => {
         activateContext.telemetry.properties.isActivationEvent = 'true';
 
         await Promise.all([

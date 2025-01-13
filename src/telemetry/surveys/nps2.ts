@@ -12,7 +12,7 @@ export const nps2: Survey = {
         [vscode.l10n.t('Take survey'), 'https://aka.ms/vscodedockernpsinproduct'],
         [vscode.l10n.t('Don\'t ask again'), undefined],
     ]),
-    prompt: vscode.l10n.t('Would you be willing to take a quick feedback survey about the Docker Extension for VS Code?'),
+    prompt: vscode.l10n.t('Would you be willing to take a quick feedback survey about the Container Tools Extension for VS Code?'),
     activationDelayMs: 60 * 1000,
     isEligible: isNPSEligible,
 };

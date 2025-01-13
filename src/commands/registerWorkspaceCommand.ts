@@ -36,17 +36,17 @@ async function verifyIsRunningInWorkspace(context: IActionContext): Promise<void
             let learnMoreLink: string;
             switch (remoteInfo.remoteKind) {
                 case RemoteKind.ssh:
-                    message = l10n.t('This operation is not supported because the Docker extension is currently running on your local machine.');
+                    message = l10n.t('This operation is not supported because the Container Tools extension is currently running on your local machine.');
                     switchTitle = l10n.t('Switch to Remote SSH');
                     learnMoreLink = 'https://aka.ms/AA5y2rd';
                     break;
                 case RemoteKind.wsl:
-                    message = l10n.t('This operation is not supported because the Docker extension is currently running outside of WSL.');
+                    message = l10n.t('This operation is not supported because the Container Tools extension is currently running outside of WSL.');
                     switchTitle = l10n.t('Switch to WSL');
                     learnMoreLink = 'https://aka.ms/AA5xvjn';
                     break;
                 case RemoteKind.devContainer:
-                    message = l10n.t('This operation is not supported because the Docker extension is currently running outside of your container.');
+                    message = l10n.t('This operation is not supported because the Container Tools extension is currently running outside of your container.');
                     switchTitle = l10n.t('Switch to Container');
                     learnMoreLink = 'https://aka.ms/AA5xva6';
                     break;
@@ -59,7 +59,7 @@ async function verifyIsRunningInWorkspace(context: IActionContext): Promise<void
             await context.ui.showWarningMessage(message, { learnMoreLink, stepName: 'switchExtensionKind' }, switchBtn);
             updateExtensionKind('workspace');
 
-            const reloadMessage: string = l10n.t('This change to the Docker extension requires reloading VS Code to take effect.');
+            const reloadMessage: string = l10n.t('This change to the Container Tools extension requires reloading VS Code to take effect.');
             const reload: MessageItem = { title: l10n.t('Reload Now') };
             await context.ui.showWarningMessage(reloadMessage, { stepName: 'requiresReload' }, reload);
 

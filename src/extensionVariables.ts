@@ -31,7 +31,6 @@ export namespace ext {
     export let activityMeasurementService: IActivityMeasurementService;
 
     export let treeInitError: unknown;
-    export const ignoreBundle = !/^(false|0)?$/i.test(process.env.AZCODE_DOCKER_IGNORE_BUNDLE || '');
 
     export let imagesTree: AzExtTreeDataProvider;
     export let imagesTreeView: TreeView<AzExtTreeItem>;
@@ -45,7 +44,7 @@ export namespace ext {
     export let networksTreeView: TreeView<AzExtTreeItem>;
     export let networksRoot: NetworksTreeItem;
 
-    export const prefix: string = 'docker';
+    export const prefix: string = 'containers';
 
     export let registriesTree: UnifiedRegistryTreeDataProvider;
     export let registriesTreeView: TreeView<UnifiedRegistryItem<unknown>>;
