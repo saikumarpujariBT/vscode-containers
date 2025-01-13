@@ -83,7 +83,7 @@ export abstract class LocalRootTreeItemBase<TItem extends AnyContainerObject, TP
         return [new GenericTreeItem(this, {
             label: l10n.t('No items found'),
             iconPath: new ThemeIcon('info'),
-            contextValue: 'dockerNoItems'
+            contextValue: 'containersNoItems'
         })];
     }
 

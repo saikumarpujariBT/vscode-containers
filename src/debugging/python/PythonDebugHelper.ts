@@ -41,7 +41,7 @@ export class PythonDebugHelper implements DebugHelper {
         const projectType = options.projectType.charAt(0).toUpperCase() + options.projectType.slice(1);
 
         return [{
-            name: `Docker: Python - ${projectType}`,
+            name: `Containers: Python - ${projectType}`,
             type: 'docker',
             request: 'launch',
             preLaunchTask: 'docker-run: debug',

@@ -43,7 +43,7 @@ export class DockerWebhookCreateStep extends AzureWizardExecuteStep<IAppServiceW
         } else if (isDockerHubRepository(this.tagItem.parent.wrappedItem)) {
             const registryName = this.tagItem.parent.parent.wrappedItem.label;
             const repoName = (this.tagItem.parent as unknown as CommonRepository).wrappedItem.label;
-            // point to dockerhub to create a webhook
+            // point to Docker Hub to create a webhook
             // http://cloud.docker.com/repository/docker/<registryName>/<repoName>/webHooks
             const dockerhubPrompt: string = vscode.l10n.t('Copy & Open');
             const dockerhubUri: string = `https://cloud.docker.com/repository/docker/${registryName}/${repoName}/webHooks`;

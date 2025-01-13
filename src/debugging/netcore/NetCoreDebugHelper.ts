@@ -48,7 +48,7 @@ export class NetCoreDebugHelper implements DebugHelper {
 
         return [
             {
-                name: 'Docker .NET Launch',
+                name: 'Containers: .NET Launch',
                 type: 'docker',
                 request: 'launch',
                 preLaunchTask: 'docker-run: debug',

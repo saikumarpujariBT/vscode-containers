@@ -49,7 +49,7 @@ export class DockerUri {
     }
 
     public get uri(): vscode.Uri {
-        const uri = vscode.Uri.parse('docker:///')
+        const uri = vscode.Uri.parse('containers:///')
             .with({
                 authority: this.containerId,
                 path: this.path

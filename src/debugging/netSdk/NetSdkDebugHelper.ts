@@ -42,7 +42,7 @@ export class NetSdkDebugHelper extends NetCoreDebugHelper {
             options.appProject = options.appProject || await NetCoreTaskHelper.inferAppProject(context); // This method internally checks the user-defined input first
 
             configurations.push({
-                name: 'Docker .NET Container SDK Launch',
+                name: 'Containers: .NET Container SDK Launch',
                 type: 'docker',
                 request: 'launch',
                 netCore: {

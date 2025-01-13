@@ -50,7 +50,7 @@ export class NodeDebugHelper implements DebugHelper {
 
         return [
             {
-                name: 'Docker Node.js Launch',
+                name: 'Containers: Node.js Launch',
                 type: 'docker',
                 request: 'launch',
                 preLaunchTask: 'docker-run: debug',

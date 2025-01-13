@@ -23,7 +23,7 @@ export async function logOutOfDockerCli(context: IActionContext, node?: UnifiedR
     const client = await ext.runtimeManager.getClient();
     const taskCRF = new TaskCommandRunnerFactory(
         {
-            taskName: 'Docker'
+            taskName: 'Container Tools'
         }
     );
 

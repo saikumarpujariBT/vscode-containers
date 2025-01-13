@@ -29,7 +29,7 @@ export function logDockerEnvironment(outputChannel: vscode.LogOutputChannel): vo
         try {
             const settingValue: NodeJS.ProcessEnv = vscode.workspace.getConfiguration(configPrefix).get<NodeJS.ProcessEnv>('environment', {});
 
-            outputChannel.debug(`--- Docker Environment (${Object.getOwnPropertyNames(settingValue).length}) ---`);
+            outputChannel.debug(`--- Container Tools Environment (${Object.getOwnPropertyNames(settingValue).length}) ---`);
             for (const key of Object.keys(settingValue)) {
                 outputChannel.debug(`${key}: ${settingValue[key]}`);
             }
