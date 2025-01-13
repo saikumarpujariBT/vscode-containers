@@ -190,7 +190,7 @@ export async function getOfficialBuildTaskForDockerfile(context: IActionContext,
             return { label: t.name };
         });
 
-        const item = await context.ui.showQuickPick(items, { placeHolder: l10n.t('Choose the Docker Build definition.') });
+        const item = await context.ui.showQuickPick(items, { placeHolder: l10n.t('Choose the build definition.') });
         return buildTasks.find(t => t.name === item.label);
     }
 

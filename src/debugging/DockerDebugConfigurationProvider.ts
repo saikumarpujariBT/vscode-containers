@@ -66,7 +66,7 @@ export class DockerDebugConfigurationProvider implements DebugConfigurationProvi
 
                     if (!folder) {
                         actionContext.errorHandling.suppressReportIssue = true;
-                        throw new Error(l10n.t('To debug with Docker you must first open a folder or workspace in VS Code.'));
+                        throw new Error(l10n.t('To debug with containers you must first open a folder or workspace in VS Code.'));
                     }
                 }
 
@@ -130,7 +130,7 @@ export class DockerDebugConfigurationProvider implements DebugConfigurationProvi
         const helper = this.helpers[platform];
 
         if (!helper) {
-            throw new Error(l10n.t('The platform \'{0}\' is not currently supported for Docker debugging.', platform));
+            throw new Error(l10n.t('The platform \'{0}\' is not currently supported for container debugging.', platform));
         }
 
         return helper;

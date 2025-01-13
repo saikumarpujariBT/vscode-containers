@@ -45,7 +45,7 @@ async function composeGroup<TOptions extends CommonOrchestratorCommandOptions>(
         await ext.containersTree.refresh(context);
         node = await ext.containersTree.showTreeItemPicker<ContainerGroupTreeItem>(/composeGroup$/i, {
             ...context,
-            noItemFoundErrorMessage: l10n.t('No Docker Compose projects are running.'),
+            noItemFoundErrorMessage: l10n.t('No compose projects are running.'),
         });
     }
 

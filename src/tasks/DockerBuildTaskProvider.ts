@@ -81,9 +81,9 @@ export class DockerBuildTaskProvider extends DockerTaskProvider {
 
     private async validateResolvedDefinition(context: DockerBuildTaskContext, dockerBuild: DockerBuildOptions): Promise<void> {
         if (!dockerBuild.context) {
-            throw new Error(l10n.t('No Docker build context was provided or resolved.'));
+            throw new Error(l10n.t('No build context was provided or resolved.'));
         } else if (!await fse.pathExists(path.resolve(context.folder.uri.fsPath, resolveVariables(dockerBuild.context, context.folder)))) {
-            throw new Error(l10n.t('The Docker build context \'{0}\' does not exist or could not be accessed.', dockerBuild.context));
+            throw new Error(l10n.t('The build context \'{0}\' does not exist or could not be accessed.', dockerBuild.context));
         }
 
         if (dockerBuild.dockerfile && !await fse.pathExists(path.resolve(context.folder.uri.fsPath, resolveVariables(dockerBuild.dockerfile, context.folder)))) {

@@ -13,7 +13,7 @@ const dockerContextStatusBarSetting = 'contexts.showInStatusBar';
 
 export function registerDockerContextStatusBarEvent(ctx: vscode.ExtensionContext): void {
     // Register an event to watch for changes to config, reconfigure if needed
-    registerEvent('docker.context.showInStatusBar.changed', vscode.workspace.onDidChangeConfiguration, (actionContext: IActionContext, e: vscode.ConfigurationChangeEvent) => {
+    registerEvent('vscode-containers.context.showInStatusBar.changed', vscode.workspace.onDidChangeConfiguration, (actionContext: IActionContext, e: vscode.ConfigurationChangeEvent) => {
 
         actionContext.telemetry.suppressAll = true;
         actionContext.errorHandling.suppressDisplay = true;

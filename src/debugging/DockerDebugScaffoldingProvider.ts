@@ -99,7 +99,7 @@ export class DockerDebugScaffoldingProvider implements IDockerDebugScaffoldingPr
                 title: 'Overwrite'
             };
 
-            overwrite = (overwriteMessageItem === await window.showWarningMessage(l10n.t('Docker launch configurations and/or tasks already exist. Do you want to overwrite them?'), ...[overwriteMessageItem, DialogResponses.no]));
+            overwrite = (overwriteMessageItem === await window.showWarningMessage(l10n.t('Container launch configurations and/or tasks already exist. Do you want to overwrite them?'), ...[overwriteMessageItem, DialogResponses.no]));
 
             if (overwrite) {
                 // Try again if needed

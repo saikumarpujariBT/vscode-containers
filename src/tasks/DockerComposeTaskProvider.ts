@@ -86,7 +86,7 @@ export class DockerComposeTaskProvider extends DockerTaskProvider {
 
         for (const file of dockerCompose.files) {
             if (!(await fse.pathExists(path.resolve(context.folder.uri.fsPath, resolveVariables(file, context.folder))))) {
-                throw new Error(l10n.t('One or more docker-compose files does not exist or could not be accessed.'));
+                throw new Error(l10n.t('One or more compose files does not exist or could not be accessed.'));
             }
         }
 

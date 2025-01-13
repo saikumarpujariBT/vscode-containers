@@ -37,7 +37,7 @@ export async function scheduleRunRequest(context: IActionContext, requestType: '
     let fileItem: Item;
     let imageName: string;
     if (requestType === 'DockerBuildRequest') {
-        rootFolder = await quickPickWorkspaceFolder(context, vscode.l10n.t('To quick build Docker files you must first open a folder or workspace in VS Code.'));
+        rootFolder = await quickPickWorkspaceFolder(context, vscode.l10n.t('To quick build Dockerfiles you must first open a folder or workspace in VS Code.'));
         fileItem = await quickPickDockerFileItem(context, uri, rootFolder);
         imageName = await quickPickImageName(context, rootFolder, fileItem);
     } else if (requestType === 'FileTaskRunRequest') {
