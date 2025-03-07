@@ -18,12 +18,14 @@ import { DockerfileCompletionItemProvider } from './dockerfileCompletionItemProv
 import { ext } from './extensionVariables';
 import { AutoConfigurableDockerClient } from './runtimes/clients/AutoConfigurableDockerClient';
 import { AutoConfigurableDockerComposeClient } from './runtimes/clients/AutoConfigurableDockerComposeClient';
+import { AutoConfigurablePodmanClient } from './runtimes/clients/AutoConfigurablePodmanClient';
 import { ContainerRuntimeManager } from './runtimes/ContainerRuntimeManager';
 import { ContainerFilesProvider } from './runtimes/files/ContainerFilesProvider';
 import { OrchestratorRuntimeManager } from './runtimes/OrchestratorRuntimeManager';
 import { registerTaskProviders } from './tasks/TaskHelper';
 import { ActivityMeasurementService } from './telemetry/ActivityMeasurementService';
-import { registerListeners } from './telemetry/registerListeners';
+import { registerFileListeners } from './telemetry/registerFileListeners';
+import { registerRuntimeTelemetryHandler } from './telemetry/registerRuntimeTelemetryHandler';
 import { registerTrees } from './tree/registerTrees';
 import { AlternateYamlLanguageServiceClientFeature } from './utils/AlternateYamlLanguageServiceClientFeature';
 import { AzExtLogOutputChannelWrapper } from './utils/AzExtLogOutputChannelWrapper';
@@ -71,7 +73,7 @@ export async function activateInternal(ctx: vscode.ExtensionContext, perfStats: 
         const dockerExtension = vscode.extensions.getExtension('ms-azuretools.vscode-docker');
         if (dockerExtension && (dockerExtension.packageJSON as { version: string }).version) {
             const dockerExtensionVersion = semver.coerce(dockerExtension.packageJSON.version);
-            if (dockerExtensionVersion && semver.lt(dockerExtensionVersion, '2')) {
+            if (dockerExtensionVersion && semver.lt(dockerExtensionVersion, '2.0.0')) {
                 throw new Error(vscode.l10n.t('An unsupported version of the Docker extension is installed. Please update the Docker extension to version 2.0.0 or later. The Container Tools extension will not activate.'));
             }
         }
@@ -137,12 +139,17 @@ export async function activateInternal(ctx: vscode.ExtensionContext, perfStats: 
         activateDockerfileLanguageClient(ctx);
         activateComposeLanguageClient(ctx);
 
-        registerListeners();
+        registerFileListeners();
+        registerRuntimeTelemetryHandler(ctx);
     });
 
     // Migrate settings
     // Don't wait
     void migrateDockerToContainersSettingsIfNeeded(ctx);
+
+    // Call command to activate container runtime provider extensions
+    // Don't wait
+    void vscode.commands.executeCommand('vscode-containers.activateContainerRuntimeProviders');
 
     // Call command to activate registry provider extensions
     // Don't wait
@@ -192,11 +199,13 @@ function setEnvironmentVariableContributions(): void {
 function registerDockerClients(): void {
     // Create the clients
     const dockerClient = new AutoConfigurableDockerClient();
+    const podmanClient = new AutoConfigurablePodmanClient();
     const composeClient = new AutoConfigurableDockerComposeClient();
 
     // Register the clients
     ext.context.subscriptions.push(
         ext.runtimeManager.registerRuntimeClient(dockerClient),
+        ext.runtimeManager.registerRuntimeClient(podmanClient),
         ext.orchestratorManager.registerRuntimeClient(composeClient)
     );
 
@@ -207,6 +216,7 @@ function registerDockerClients(): void {
 
         if (e.affectsConfiguration(`${configPrefix}.containerCommand`)) {
             dockerClient.reconfigure();
+            podmanClient.reconfigure();
         }
 
         if (e.affectsConfiguration(`${configPrefix}.composeCommand`)) {
