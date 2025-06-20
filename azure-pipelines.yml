@@ -17,3 +17,65 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+  trigger:
+  branches:
+    include:
+      - main   # Change if using a different default branch
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  outputPath: '$(Build.ArtifactStagingDirectory)/publish'
+
+steps:
+# Install .NET SDK
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+# Restore dependencies
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+
+# Build the solution
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --no-restore'
+
+# Run unit tests
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --no-build'
+
+# Publish artifacts
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(outputPath)'
+    zipAfterPublish: true
+
+# Publish to DevOps artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(outputPath)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+# Deploy to Azure Web App
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '<Your Azure Service Connection Name>'
+    appName: '<Your App Service Name>'
+    package: '$(outputPath)/**/*.zip'
+
